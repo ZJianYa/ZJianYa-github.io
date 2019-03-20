@@ -40,4 +40,4 @@ package-lock.json
 yarn.lock
 
 # 博客的发布文件放在另一个项目里
-docs/.vuepress
+docs/.vuepress/dist
