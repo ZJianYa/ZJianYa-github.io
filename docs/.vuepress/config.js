@@ -1,7 +1,7 @@
 module.exports = {
   // 主题部署
-  title: 'ZJianYa',
-  description: ' ',
+  title: '主页',
+  description: '描述信息',
   head: ['link', { rel: 'icon', href: '/icon.png' }],
   themeConfig: {
       /** 
@@ -33,7 +33,7 @@ module.exports = {
                   },
                   {
                       text: '其他',
-                      link: '/article/other/'
+                      link: '/article/jekll/front-matter.md'
                   }
               ]
           },

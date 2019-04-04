@@ -12,6 +12,8 @@
   innodb_flush_log_at_trx_commit = 0  
   create database `jiaotong` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
   `https://www.cnblogs.com/littlehb/p/6877148.html` mysql 如何提高批量导入的速度
+- MySQL中的semi-join 详细介绍
+  https://blog.csdn.net/lppl010_/article/details/80301757
 
 ## 安装
 
@@ -59,10 +61,15 @@ distinct会影响效率吗？
 
 #### 更新or插入
 
-`https://www.cnblogs.com/xing901022/p/6837604.html`  on DUPLICATE key  
-`https://www.cnblogs.com/parryyang/p/5586873.html` batch update  
+- `https://www.cnblogs.com/xing901022/p/6837604.html`  on DUPLICATE key  
+- `https://www.cnblogs.com/parryyang/p/5586873.html` batch update  
   Error Code: 1175. SET SQL_SAFE_UPDATES = 0;  
-`https://www.cnblogs.com/liuchao233/p/6962379.html` 自动转为大写  
+- `https://www.cnblogs.com/liuchao233/p/6962379.html` 自动转为大写  
+- 插入速度太慢  
+  https://blog.csdn.net/qq547276542/article/details/75097602 JDBC 插入百万级时特别慢  
+  select @@bulk_insert_buffer_size;  
+  set global innodb_flush_log_at_trx_commit = 0;  
+  set global sync_binlog=0;  
 
 ### 设计相关
 
