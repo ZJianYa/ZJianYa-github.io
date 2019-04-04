@@ -1,52 +1,72 @@
 module.exports = {
   // 主题部署
   title: '主页',
-  description: '描述信息',
-  head: ['link', { rel: 'icon', href: '/icon.png' }],
+  description: '',
+  head: ['link', {
+    rel: 'icon',
+    href: '/icon.png'
+  }],
+  // TODO 所有的配置以后改为独立文件夹配置，且可以自动扫描注册
   themeConfig: {
-      /** 
-       * 右侧导航条
-       * text - 显示字段
-       * link - 链接：注意前后带 / 符号
-       */
-      nav: [
-          {
-              text: '主页',
-              link: '/home/'
-          },
-          /**
-           * 多级菜单
-           * 开头 text 为一级标题
-           * 数组内 text 为二级标题
-           * link 为链接，注意带 /
-           */
-          {
-              text: '文章',
-              items: [
-                  {
-                      text: '技术',
-                      link: '/article/technology/'
-                  },
-                  {
-                      text: '随笔',
-                      link: '/article/essay/'
-                  },
-                  {
-                      text: '其他',
-                      link: '/article/jekll/front-matter.md'
-                  }
-              ]
-          },
-          {
-              text: '关于',
-              link: '/about/'
-              // link: '/about/'
-          },
-          // 链接到网站
-          {
-              text: 'Github',
-              link: 'https://www.github.com/veenveenveen'
-          },
+    nav: [{
+      text: '主页',
+      link: '/home/'
+    },{
+      text: '关于我',
+      link: '/about/resume.md'
+    },
+    {
+      text: 'Java系列',
+      items: [
+        {
+          text:'Java Core',
+          link:'/article/jdk'
+        },
+        {
+          text:'Spring Core',
+          link:'/article/spring'
+        },
+        {
+          text:'mybatis generator',
+          link:'/article/mybatis-generator'
+        }
       ]
-  }
+    },
+    {
+      text: 'MySQL',
+      link: '/article/mysql/'
+    },
+    {
+      text: '关于博客',
+      items: [{
+        text: '如何搭建',
+        link: '/about/how-to-build-blog.md',
+      },{
+        text: '做什么用',
+        link: ''
+      }]
+    },
+    // 链接到网站
+    {
+      text: 'Github',
+      link: 'https://github.com/ZJianYa/myblog'
+    },
+    ]
+  },
+  markdown: {
+		anchor: {
+			permalink: true
+		},
+		toc: {
+			includeLevel: [1, 2]
+		},
+		config: md => {
+			// 使用更多 markdown-it 插件！
+			md.use(require('markdown-it-task-lists'))
+			.use(require('markdown-it-imsize'), { autofill: true })
+		}
+	},
+	postcss: {
+		plugins: [require('autoprefixer')]
+	},
 }
