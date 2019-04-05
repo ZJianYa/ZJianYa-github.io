@@ -43,7 +43,7 @@ module.exports = {
         link: '/about/how-to-build-blog.md',
       },{
         text: '做什么用',
-        link: ''
+        link: '/about/why-blog.md'
       }]
     },
     // 链接到网站
