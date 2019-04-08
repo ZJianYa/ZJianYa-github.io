@@ -2,7 +2,8 @@
 <div class="block">
     <h3 style="margin-bottom: 0; padding-bottom: 0;">{{title}}</h3> 
     <github v-if="githubUrl" :url="githubUrl" />
-    <h4 v-if="subtitle" style="display: inline;">{{subtitle}}</h4> <span v-if="years" class="right"><Badge :text="years" /></span>
+    <h4 v-if="subtitle" style="display: inline;">{{subtitle}}</h4>
+    <span v-if="years" class="right"><Badge :text="years" /></span>
 
     <p><slot></slot></p>
 </div>

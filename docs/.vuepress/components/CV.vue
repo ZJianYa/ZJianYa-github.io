@@ -6,8 +6,7 @@
       <Content slot-key="footer"/>
     </main>
     <footer>
-      <!-- <span class="download"><a href="">Download PDF</a></span> -->
-      <PopUp :url="'https://s3.eu-west-2.amazonaws.com/arranfrance.com/Arran-France--Full-Stack-Software-Engineer--CV.pdf'"/>
+      <!-- <PopUp :url="'https://s3.eu-west-2.amazonaws.com/arranfrance.com/Arran-France--Full-Stack-Software-Engineer--CV.pdf'"/> -->
     </footer>
   </div>
 </div>

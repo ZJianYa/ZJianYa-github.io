@@ -1,13 +1,5 @@
 <template>
-    <span>
-        <a :href="'https://github.com/' + url">
-            <img src="./github.svg" />
-        </a>
-
-        <a :href="'https://github.com/' + url">
-            <p>{{url}}</p>
-        </a>
-    </span>
+    <span><p>{{url}}</p></span>
 </template>
 
 <script>
