@@ -10,7 +10,7 @@ module.exports = {
   themeConfig: {
     nav: [{
       text: '主页',
-      link: '/home/'
+      link: '/'
     },{
       text: '关于我',
       link: '/about/resume.md'
@@ -51,7 +51,13 @@ module.exports = {
       text: 'Github',
       link: 'https://github.com/ZJianYa/myblog'
     },
-    ]
+    ],
+    sidebar: {
+      '/about/': [
+        'how-to-build-blog.md',
+        'why-blog.md',
+      ],
+    }
   },
   markdown: {
 		anchor: {

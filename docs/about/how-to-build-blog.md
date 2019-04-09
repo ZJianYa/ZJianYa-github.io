@@ -8,7 +8,7 @@
 ## Vuepress
 
 我参考的是官网：  
-[https://vuepress.vuejs.org/zh/guide/getting-started.html#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85](https://vuepress.vuejs.org/zh/guide/getting-started.html#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85)
+[https://vuepress.vuejs.org/zh/guide/getting-started.html](https://vuepress.vuejs.org/zh/guide/getting-started.html)
 
 在macOS上搭建Vuepress，碰到一些问题，参考下面的没解决掉，后面补上问题和解决方法吧。  
 [https://www.jianshu.com/p/3b96f8c948cf](https://www.jianshu.com/p/3b96f8c948cf)
