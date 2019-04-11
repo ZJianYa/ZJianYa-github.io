@@ -1,7 +1,7 @@
 ---
 {
   "layout": "CV",
-  "title": "CV",
+  "title": "关于我",
   "sidebar": auto
 }
 ---
@@ -19,7 +19,7 @@
 - WEB容器基本上就接触过Tomcat，用过JBoss（已经完全没印象），如果`NodeJS`也算，那也算是用过吧。虽然现在用 `docker` 作为容器发布应用程序，但是也只限于基本的几个命令。
 - 提高开发效率的：Swagger、Mybatis Generator。
 
-掌握的程度大致如此： [索引和事务与MySQL性能关系](./)、[JVM参数配置与优化](./)、[SpringSecurity可能需要定制化的点](./)。  
+掌握的程度大致如此： [索引和事务与MySQL性能关系](/article/mysql/index.md)、[JVM参数配置与优化](/article/Java/jvm/jvm.md)、[SpringSecurity可能需要定制化的点](/article/mysql/index.md)。  
 
 <!-- <grid title="Languages" items="languages" class="block" /> -->
 

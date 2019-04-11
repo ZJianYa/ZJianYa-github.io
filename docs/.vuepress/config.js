@@ -1,6 +1,6 @@
 module.exports = {
   // 主题部署
-  title: '主页',
+  title: '首页',
   description: '',
   head: ['link', {
     rel: 'icon',
@@ -9,9 +9,6 @@ module.exports = {
   // TODO 所有的配置以后改为独立文件夹配置，且可以自动扫描注册
   themeConfig: {
     nav: [{
-      text: '主页',
-      link: '/'
-    },{
       text: '关于我',
       link: '/about/resume.md'
     },
@@ -20,7 +17,7 @@ module.exports = {
       items: [
         {
           text:'Java Core',
-          link:'/article/jdk'
+          link:'/article/Java/jvm/jvm.md'
         },
         {
           text:'Spring Core',
@@ -57,6 +54,17 @@ module.exports = {
         'how-to-build-blog.md',
         'why-blog.md',
       ],
+      '/article/': [
+        {
+          'Java/': [
+            {
+              'jvm/':[
+                'jvm.md'
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
   markdown: {
