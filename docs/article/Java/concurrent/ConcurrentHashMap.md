@@ -1,7 +1,9 @@
 # 概述
 
-Vector Stack Hashtable  
-Synchronized Wrapper  
+源码：  
+http://hg.openjdk.java.net/jdk7/jdk7/jdk/file/9b8c96f96a0f/src/share/classes/java/util/concurrent/ConcurrentHashMap.java
+
+## Synchronized Wrapper  
 
 线程安全和并发
 
