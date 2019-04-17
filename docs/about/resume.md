@@ -9,8 +9,7 @@
 
 # 个人简介
 
-我是一个7年工作经验的Java工程师，比较熟悉的技术（或框架）有 **`SpringBoot、MyBatis、MySQL、Vue`**。  
-用过的技术（框架）就比较多了：
+本人从事Java开发已7年，目前在浙江乾冠信息安全研究院工作，任北京办事处的技术组长，参与并管理日常的研发工作。掌握比较好的技术（或框架）有 SpringBoot、MyBatis、MySQL、Vue。其他用过的技术（框架）比较杂多：
 
 - Java技术栈里的：`JSP、SpringMVC、Struts、hibernate，HttpClient`，也写过`SOAP`接口。
 - 前端自然用过`jQuery、ECharts、Highcharts`，还用过`Cordova、Freamwork7、RequireJS、ionic、AngularJS、Twaver`，去年上半年还用了`Vue`和`Element-UI`。
@@ -19,7 +18,7 @@
 - WEB容器基本上就接触过Tomcat，用过JBoss（已经完全没印象），如果`NodeJS`也算，那也算是用过吧。虽然现在用 `docker` 作为容器发布应用程序，但是也只限于基本的几个命令。
 - 提高开发效率的：Swagger、Mybatis Generator。
 
-掌握的程度大致如此： [索引和事务与MySQL性能关系](/article/mysql/index.md)、[JVM参数配置与优化](/article/Java/jvm/jvm.md)、[SpringSecurity可能需要定制化的点](/article/mysql/index.md)。  
+至于技术掌握的熟练度和深度，并非三言两语能讲的准的，不如直接交流来的方便。
 
 <!-- <grid title="Languages" items="languages" class="block" /> -->
 
@@ -153,3 +152,21 @@ Oracle、Java、中科软前后端的自研框架、iReport报表框架、spring
 <grid title="Elective Modules" items="modules" width="33" /> -->
 
 </block>
+
+## 关于离职和在职
+
+### 离职
+
+如果是之前的离职都是主动离职，这次的离职从某种程度上讲是“被动”离职，因为公司这两年的经营状况确实不太好，去年的时候总部已经有不少人选择了年前离开。最近领导已经透露消息给我们：北京今年裁撤的可能性很大，目前手上的项目也接近尾声，所以打算出来找找机会。既避免了裁撤时领导难堪，也免得临时找工作的忙乱。  
+
+关于本人在工作中的表现和绩效，我是可以提供领导（面试时提供联系方式）做评价的：  
+[岑钦](https://cn.linkedin.com/in/%E9%92%A6-%E5%B2%91-52b01712a?trk=prof-samename-picture)是华为苏研所的一个项目经理，当时他是我工作上的直接主管。  
+[徐平](http://www.qgs-china.com/qgs/qgxw_18/2018/10/30/content_5098.htm)是我现在的直接领导（图中第9位）。  
+我对自己在工作期间的表现是很有自信的，其他领导的联系方式我也可以提供(但是他们在网上没有想过介绍信息，这里就不列举了)。  
+
+### 在职
+
+我在职期间基本上和直接领导关系都很不错，并非自己擅长交际，而是我更愿意站在领导角度去考虑他关心的问题和团队需要关心的问题。  
+有时候其他同事觉得我考虑的太多，我也常常会反思自己是否有越俎代庖之嫌。但是事后来看，我所做的事情都得到了领导的认可。我是如何确认领导认可我自己的想法呢：1. 平时的沟通，（不管是表面还是实际）他们给过肯定的答复； 2. 年中或年终的时候，愿意给我争取一个优秀员工之类的名额。  
+无论是技术上的还是非技术上的事情，我都愿意尝试，如果自己有足够力气，那就把所有的事往前推着走。  
+人到中年很多时候会感觉自己力量不够，而我愿意成为那个旁边给一个助力的人。  
