@@ -1,3 +1,8 @@
+# 概述
+
+## 可传染参数
+
+传递给JVM的参数，不一定是JVM的配置参数。
 
 http://jvmmemory.com/  可以在线配置参数
 
@@ -56,4 +61,23 @@ where options include:
                   show splash screen with specified image
 See http://www.oracle.com/technetwork/java/javase/documentation/index.html for more details.
 [root@localhost apache-tomcat-9.0.8]#
+```
+
+https://docs.oracle.com/javame/8.0/api/meep/api/doc-files/system_properties.html
+
+## Tomcat的常见参数
+
+```{}
+ /usr/bin/jdk1.8.0_202/bin/java 
+ -Djava.util.logging.config.file=/home/test/apache-tomcat-9.0.8/conf/logging.properties 
+ -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
+ -Djdk.tls.ephemeralDHKeySize=2048 
+ -Djava.protocol.handler.pkgs=org.apache.catalina.webresources 
+ -Dfile.encoding=UTF-8 
+ -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 
+ -Dignore.endorsed.dirs= 
+ -classpath /home/test/apache-tomcat-9.0.8/bin/bootstrap.jar:/home/test/apache-tomcat-9.0.8/bin/tomcat-juli.jar 
+ -Dcatalina.base=/home/test/apache-tomcat-9.0.8 
+ -Dcatalina.home=/home/test/apache-tomcat-9.0.8 
+ -Djava.io.tmpdir=/home/test/apache-tomcat-9.0.8/temp org.apache.catalina.startup.Bootstrap start
 ```
