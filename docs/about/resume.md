@@ -9,7 +9,9 @@
 
 # 个人简介
 
-本人从事Java开发已7年，目前在浙江乾冠信息安全研究院工作，任北京办事处的技术组长，参与并管理日常的研发工作。掌握比较好的技术（或框架）有 SpringBoot、MyBatis、MySQL、Vue。其他用过的技术（框架）比较杂多：
+本人从事Java开发已7年，目前在浙江乾冠信息安全研究院工作，任北京办事处的技术组长，参与并管理日常的研发工作。掌握比较好的技术（或框架）有 SpringBoot、MyBatis、MySQL、Vue。其中对MySQL调优、JVM调优比较熟悉，对Spring Framework相关技术有比较系统的掌握。
+
+其他用过的技术（框架）比较杂多：
 
 - Java技术栈里的：`JSP、SpringMVC、Struts、hibernate，HttpClient`，也写过`SOAP`接口。
 - 前端自然用过`jQuery、ECharts、Highcharts`，还用过`Cordova、Freamwork7、RequireJS、ionic、AngularJS、Twaver`，去年上半年还用了`Vue`和`Element-UI`。
@@ -17,9 +19,6 @@
 - 版本管理方面最早用过`rose`，后来用`svn`比较多，现在用的是`GitLab`。  
 - WEB容器基本上就接触过Tomcat，用过JBoss（已经完全没印象），如果`NodeJS`也算，那也算是用过吧。虽然现在用 `docker` 作为容器发布应用程序，但是也只限于基本的几个命令。
 - 提高开发效率的：Swagger、Mybatis Generator。
-
-至于技术掌握的熟练度和深度，并非三言两语能讲的准的，不如直接交流来的方便。
-
 <!-- <grid title="Languages" items="languages" class="block" /> -->
 
 ## 工作经历
