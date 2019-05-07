@@ -54,27 +54,27 @@
 
 #### Spring Field Formatting
 
-#### Configuring a global date & time format
+#### Configuring a global date & time format N
 
-#### Spring Validation
+#### Spring Validation N
 
-### 4. Spring Expression Language (SpEL)
+### 4. Spring Expression Language (SpEL) N
 
-### 5.Aspect Oriented Programming with Spring
+### 5.Aspect Oriented Programming with Spring Y
 
-### 6.Spring AOP APIs
+### 6.Spring AOP APIs  N
 
-### 7.Null-safety
+### 7.Null-safety N
 
-### 8.Data Buffers and Codecs TODO
+### 8.Data Buffers and Codecs N
 
-### 9.Appendix
+### 9.Appendix N
 
 #### XML Schemas
 
-#### XML Schema Authoring TODO
+#### XML Schema Authoring
 
-## Testing
+## Testing N
 
 ## Data Access
 

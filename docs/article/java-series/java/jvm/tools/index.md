@@ -67,3 +67,8 @@ jstack可以定位到线程堆栈，根据堆栈信息我们可以定位到具�
 - 使用elk去检测，是否可用更好的方法？
 
 https://zhuanlan.zhihu.com/p/58461333?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com JVM性能调优监控工具jps、jstack、jmap、jhat、jstat使用详解
+
+## 参考资料
+
+https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/  
+https://docs.oracle.com/javase/8/docs/technotes/tools/unix/  
