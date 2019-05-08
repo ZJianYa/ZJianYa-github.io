@@ -72,3 +72,5 @@ https://zhuanlan.zhihu.com/p/58461333?utm_medium=hao.caibaojian.com&utm_source=h
 
 https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/  
 https://docs.oracle.com/javase/8/docs/technotes/tools/unix/  
+http://www.cnblogs.com/duanxz/archive/2012/07/10/2584249.html jvm 工具系列 这个写的自然是很不错
+https://blog.csdn.net/lang_programmer/article/details/84726303  arthas排坑（一）：远程监控
