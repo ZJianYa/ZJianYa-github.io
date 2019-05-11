@@ -1,7 +1,5 @@
 # 面试
 
-https://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Proxy.html 代理究竟知多少
-
 ## JDK 
 
 ### 多线程
