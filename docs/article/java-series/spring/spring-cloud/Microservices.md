@@ -1,5 +1,14 @@
 # 概述
 
+https://docs.spring.io/spring-boot/docs/  
+
+服务发现 —— Netflix Eureka  
+客服端负载均衡 —— Netflix Ribbon  
+断路器 —— Netflix Hystrix  
+服务网关 —— Netflix Zuul  
+分布式配置 —— Spring Cloud Config  
+Config vs Eureka ？  
+
 ## 场景介绍
 
 ## 权限和安全
@@ -58,8 +67,8 @@ http://www.infoq.com/cn/news/2016/08/Monomer-architecture-Micro-servi 从单体�
 https://en.wikipedia.org/wiki/Microservices 基础概念和理论
 微服务实际上和分库、分表并无太多关系。分布式应用和分布式数据库是两个层面、两个概念。
 
-https://projects.spring.io/spring-cloud/
-https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/ 
+https://projects.spring.io/spring-cloud/  
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/  
 http://www.infoq.com/cn/articles/basis-frameworkto-implement-micro-service 实施微服务，我们需要哪些框架
 http://www.infoq.com/cn/articles/boot-microservices 使用SpringBoot创建微服务
 

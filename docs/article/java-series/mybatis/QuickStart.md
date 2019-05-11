@@ -1,5 +1,7 @@
 # 概述
 
+http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html  
+
 任何框架都是为了解放人
 
 ## 整体结构
@@ -7,8 +9,11 @@
 对象清单：
 
 - Environment
+  
 - TransactionManager
+  
 - DataSource
+  
 - SqlSessionFactoryBuilder  
   实例的最佳作用域是方法作用域，以保证所有的 XML 解析资源开放给更重要的事情。
 - SqlSessionFactory
