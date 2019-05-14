@@ -19,7 +19,7 @@ config
 
 ## 注册/发现
 
-Consul
+Consul Nacos
 
 - Eureka Client：负责将这个服务的信息注册到Eureka Server中  
 - Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号  
@@ -59,7 +59,11 @@ Feign就会针对这台机器，构造并发起请求。
 
 ## 链路监控
 
+Dapper Sleuth
+
 ## 监控告警
+
+ELK
 
 ## 参考
 
