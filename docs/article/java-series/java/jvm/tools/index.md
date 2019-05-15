@@ -1,21 +1,5 @@
 # 概述
 
-JVM会出现异常，或者变慢，或者有时卡顿的现象。  
-
-## 异常类型
-
-内存泄露，还是分配不足，都可能导致OOM
-
-OutOfMemoryError
-
-## 必备知识和解决思路
-
-### 必备知识
-
-对 Java 内存有所了解
-
-会看日志和使用工具
-
 ## 工具列表
 
 ### jps(Java Virtual Machine Process Status Tool)
@@ -61,6 +45,10 @@ jstack [option] [server-id@]remote-hostname-or-ip
 jstack可以定位到线程堆栈，根据堆栈信息我们可以定位到具体代码，所以它在JVM性能调优中使用得非常多。下面我们来一个实例找出某个Java进程中最耗费CPU的Java线程并定位堆栈信息，用到的命令有ps、top、printf、jstack、grep。
 
 第一步先找出Java进程ID，我部署在服务器上的Java应用名称为mrf-center：
+
+### jstat
+
+https://www.jianshu.com/p/213710fb9e40
 
 ### 更好的手段
 
