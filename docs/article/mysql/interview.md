@@ -6,6 +6,8 @@
 
 ### 索引
 
+https://dev.mysql.com/doc/refman/8.0/en/bnl-bka-optimization.html MySQL BKA
+
 ### 读写缓存
 
 ### 事务

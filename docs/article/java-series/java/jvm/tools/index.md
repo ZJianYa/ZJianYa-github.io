@@ -1,5 +1,9 @@
 # 概述
 
+如果是开发环境，我们直接用 VisualVM ，或者 eclipse Memory Analyzer (MAT) 来分析。  
+如果是测试环境，可视化的工具那只能用 VisualVM ，或者 jconsole 。  
+如果是生产环境，看规范要求，非可视化的工具我用 jcmd 看线程堆栈信息，用 jstat 查看
+
 ## 工具列表
 
 ### jps(Java Virtual Machine Process Status Tool)
@@ -21,6 +25,7 @@ jps [options] [hostid]
 -v 输出传入JVM的参数
 比如下面：
 
+```{}
 root@ubuntu:/# jps -m -l
 2458 org.artifactory.standalone.main.Main /usr/local/artifactory-2.2.5/etc/jetty.xml
 29920 com.sun.tools.hat.Main -port 9998 /tmp/dump.dat
@@ -29,6 +34,7 @@ root@ubuntu:/# jps -m -l
 8247 org.apache.catalina.startup.Bootstrap start
 25687 com.sun.tools.hat.Main -port 9999 dump.dat
 21711 mrf-center.jar
+```
 
 ### jstack
 
@@ -60,5 +66,5 @@ https://zhuanlan.zhihu.com/p/58461333?utm_medium=hao.caibaojian.com&utm_source=h
 
 https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/  
 https://docs.oracle.com/javase/8/docs/technotes/tools/unix/  
-http://www.cnblogs.com/duanxz/archive/2012/07/10/2584249.html jvm 工具系列 这个写的自然是很不错
-https://blog.csdn.net/lang_programmer/article/details/84726303  arthas排坑（一）：远程监控
+http://www.cnblogs.com/duanxz/archive/2012/07/10/2584249.html jvm 工具系列 这个写的自然是很不错  
+https://blog.csdn.net/lang_programmer/article/details/84726303  arthas排坑（一）：远程监控  

@@ -65,6 +65,20 @@ Dapper Sleuth
 
 ELK
 
+## 测试
+
+https://www.cnblogs.com/hanzhaoxin/p/9183750.html  服务契约治理
+
+## 云原生
+
+https://github.com/GoogleContainerTools/jib  打包Java容器
+
+## 案例
+
+http://dockone.io/article/8599  小团队的微服务之路
+https://www.infoq.cn/article/WHt0wFMDRrBU-dtkh1Xp 如何从零开始搭建 CI/CD 流水线
+http://dy.163.com/v2/article/detail/EASFV4380518DLIO.html  不要让你的微服务化之路，止步于组织架构的不匹配
+
 ## 参考
 
 http://www.infoq.com/cn/news/2016/08/Monomer-architecture-Micro-servi 从单体架构迁移到微服务，8个关键的思考、实践和经验
