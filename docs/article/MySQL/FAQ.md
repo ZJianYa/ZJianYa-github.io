@@ -55,11 +55,11 @@ distinct会影响效率吗？
 关于Id是否能够保证初始化的时候Id和程序中的Id一致性？究竟用逻辑Id，还是业务Id。  
 序列的问题，以及序列承担的职责  
 
-### 字符问题：
+## 字符问题：
 
 `http://blog.csdn.net/followmyinclinations/article/details/50822963` mysql默认不区分大小写
 
-#### 更新or插入
+## 更新or插入
 
 - `https://www.cnblogs.com/xing901022/p/6837604.html`  on DUPLICATE key  
 - `https://www.cnblogs.com/parryyang/p/5586873.html` batch update  
@@ -71,7 +71,7 @@ distinct会影响效率吗？
   set global innodb_flush_log_at_trx_commit = 0;  
   set global sync_binlog=0;  
 
-### 设计相关
+## 设计相关
 
 #### 层次查询
 
@@ -112,3 +112,7 @@ SQL的拓展，留意查询条件和结果。条件，可以是map，可以是be
 
 `http://blog.csdn.net/lawmansoft/article/details/7268473`  MySQL配置端口访问规则 - 允许外网访问 3306
 > GRANT ALL PRIVILEGES ON `csmp-shaoxing`.* TO 'qgs'@'%' IDENTIFIED BY 'Qgs@2018';  
+
+## TODO
+
+- 如果嵌套的多次 begin，会报语法错误吗？
