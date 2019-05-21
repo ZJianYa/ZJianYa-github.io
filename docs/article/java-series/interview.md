@@ -28,11 +28,21 @@ lambda、Stream、函数式编程
 
 https://juejin.im/post/5cad4adc5188251b1f4d87d2 JVM内存结构和JVM的区别，Java对象模型又是什么  
 有什么用呢？  
-https://juejin.im/post/5cc264b76fb9a0324b27c374  缓存一致性
+https://juejin.im/post/5cc264b76fb9a0324b27c374  计算机缓存一致性
 
 https://juejin.im/post/5cc10e8d5188252e761e785a  堆栈分析
 
-### 内存模型
+### 了解 JVM 内存结构
+
+### 了解 JVM 常见问题发生的原因
+
+### 针对不同原因的解决方法
+
+#### OOM
+
+#### GC卡顿
+
+### JMM 内存模型
 
 ### 参数配置
 
@@ -47,6 +57,7 @@ https://juejin.im/post/5cc10e8d5188252e761e785a  堆栈分析
   Oauth jwt sso  
 
 https://www.infoq.cn/article/x-XFMSsN8IrDO2YR0T82 异常处理  
+
 core：IoC container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP  
 Testing:Mock objects, TestContext framework, Spring MVC Test, WebTestClient.  
 Data Access:Transactions  

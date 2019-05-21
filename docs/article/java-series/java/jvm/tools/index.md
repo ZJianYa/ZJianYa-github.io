@@ -2,9 +2,21 @@
 
 如果是开发环境，我们直接用 VisualVM ，或者 eclipse Memory Analyzer (MAT) 来分析。  
 如果是测试环境，可视化的工具那只能用 VisualVM ，或者 jconsole 。  
-如果是生产环境，看规范要求，非可视化的工具我用 jcmd 看线程堆栈信息，用 jstat 查看
+如果是生产环境，看规范要求，非可视化的工具我用 jcmd 看线程堆栈信息，用 jstat 查看。
 
 ## 工具列表
+
+### VisualVM  
+
+### Java Mission Control（JMC) 和 JFR
+
+这里有一个相对特殊的部分，就是是堆外内存中的直接内存，前面的工具基本不适用，可以使用 JDK 自带的 Native Memory Tracking（NMT）特性，它会从 JVM 本地内存分配的角度进行解读。
+
+### jmap  
+
+### jinfo
+
+### jConsole
 
 ### jps(Java Virtual Machine Process Status Tool)
 
@@ -38,7 +50,7 @@ root@ubuntu:/# jps -m -l
 
 ### jstack
 
-jstack主要用来查看某个Java进程内的线程堆栈信息。语法格式如下：
+jstack 主要用来查看某个Java进程内的线程堆栈信息。语法格式如下：
 
 ```{}
 jstack [option] pid
@@ -56,11 +68,21 @@ jstack可以定位到线程堆栈，根据堆栈信息我们可以定位到具�
 
 https://www.jianshu.com/p/213710fb9e40
 
-### 更好的手段
+### 其他手段
 
 - 使用elk去检测，是否可用更好的方法？
 
 https://zhuanlan.zhihu.com/p/58461333?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com JVM性能调优监控工具jps、jstack、jmap、jhat、jstat使用详解
+
+## 阿里工具
+
+#### arthas
+
+#### TProfile
+
+## 容器工具  
+
+Tomcat、Weblogic等J2EE工具自身也会提供一些工具
 
 ## 参考资料
 

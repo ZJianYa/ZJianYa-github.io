@@ -8,6 +8,8 @@
 
 https://dev.mysql.com/doc/refman/8.0/en/bnl-bka-optimization.html MySQL BKA
 
+BNL MRR BKA  很多时候给的钱多，是因为我们可能需要帮助DBA解决很多问题，开发是最笨的也是最能干的
+
 ### 读写缓存
 
 ### 事务
