@@ -52,24 +52,20 @@ id, select_type, table, partitions, type, possible_keys, key, key_len, ref, rows
 '1', 'SIMPLE', 't1', NULL, 'range', 'a', 'a', '5', NULL, '100', '100.00', 'Using index condition; Using MRR'
 ```
 
-## BKA
-
-https://dev.mysql.com/doc/refman/8.0/en/bnl-bka-optimization.html
-
-Batched Key Access (BKA) 关联逻辑在都是用索引访问关联表和`join buffer`时可用。  
-支持内连接、外链接、`semi-join`，嵌套外链接。  
-BKA的优点：可以更高效的表扫描，从而提高join执行效率。  
-BNL也不再局限于内连接时可用，也可用于外连接和半连接操作，嵌套外连接。  
-
-### Join Buffer 管理
+### Join Buffer
 
 MySQL 可以使用连接缓冲区执行`inner joins without index access to the inner table`，也可以执行`outer joins and semi-joins that appear after subquery flattening`。此外，当存在对内部表的索引访问时，可以有效（更高效）地使用连接缓冲区。  
 
-### BNL
+### BKA Joins
 
-### Batched Key Access Joins
+上面的单表查询，回表的时候通过 join buffer 做的优化叫 MRR。  
+接下来用到 join 查询时，同样的优化的叫做 BKA。  
+实际上是对 BNL 的改进。如：  
+`select * from t2 where t2.id = t1.a and a>=1 and a<=100`  
 
-MySQL实现了一个称之为`Batched Key Access (BKA)`的join表的方法，当使用索引访问被join的表时，能用BKA。  
+NLJ 算法执行的逻辑是：从驱动表 t1，一行行地取出 a 的值，再到被驱动表 t2 去做 join。  
+
+MySQL实现了一个称之为`Batched Key Access (BKA)`的join表的方法，当使用索引访问被join的表时，能用 BKA。  
 像`BNL join`算法，`BKA join`算法使用一个 `join buffer` 连接缓冲区来累积由第一个操作产生的所有行。  
 然后`BKA`在缓冲区构建这些索引，然后批量提交给数据库做索引查询。  
 这些 `keys` 通过 MRR 接口提交给搜索引擎。  
@@ -77,13 +73,23 @@ MySQL实现了一个称之为`Batched Key Access (BKA)`的join表的方法，当
 
 ...
 
-如果要使用BKA，`optimizer_switch`的`batched_key_access`必须设置为 on。 BKA 使用 MRR，所以 mrr 必须设置为 on。  
+如果要使用BKA，`optimizer_switch`的`batched_key_access`必须设置为 on 。 BKA 使用 MRR ，所以 mrr 必须设置为 on。  
 目前，MRR的成本估算过于悲观。因此，也有必要对 mrr_cost_based 设置为 off，如果要使用BKA。以下设置启用BKA：
 
 ```{}
 mysql> SET optimizer_switch='mrr=on,mrr_cost_based=off,batched_key_access=on';
 ```
 
-MRR功能有两种执行方式：
+### BNL 副作用
 
-...
+TODO
+
+### BNL 优化
+
+#### 转 BKA
+
+#### 临时表
+
+#### hash join
+
+## FAQ

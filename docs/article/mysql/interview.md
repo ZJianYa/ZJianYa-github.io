@@ -1,14 +1,16 @@
 # 概述
 
+http://blog.jobbole.com/100349/  数据库原理和算法，虽然讲的很好。  
+但是我们不可以采用这种学习方法。这更像是瀑布式浇灌，既不适合吸收，也不适合精益学习。  
+但是这种讲法，非常适合面试，适合秀，那种一泻千里的气魄。  
+
 ## SQL 执行与优化
 
 ### 慢查询
 
 ### 索引
 
-https://dev.mysql.com/doc/refman/8.0/en/bnl-bka-optimization.html MySQL BKA
-
-BNL MRR BKA  很多时候给的钱多，是因为我们可能需要帮助DBA解决很多问题，开发是最笨的也是最能干的
+NLJ BNL MRR BKA  很多时候给的钱多，是因为我们可能需要帮助DBA解决很多问题，开发是最笨的也是最能干的
 
 ### 读写缓存
 
