@@ -1,7 +1,9 @@
-- @EnableWebMvc 和 swagger  
-  https://segmentfault.com/q/1010000015865925  
 
-- @EnableWebMvc 和 @EnableAutoConfiguration 有冲突？但是要小心的是  
-  WebMvcConfigurationAdapter（已废弃） 、WebMvcConfigurationSupport 、WebMvcConfigurer 
-  https://blog.csdn.net/testcs_dn/article/details/80249894  
-  WebMvcConfigurationSupport 、WebMvcConfigurer 都无需使用 @EnableWebMvc。  
+- dispatcherServlet 如何组织 filter、Controller、
+- dispatcherServlet 如何选择 handler
+- handler 如何路由请求
+
+究竟是想问mvc，还是想问Springboot，有时候面试官可能傻傻分不清。
+
+
+如果说
