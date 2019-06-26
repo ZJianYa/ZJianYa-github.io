@@ -6,10 +6,11 @@ Computer users take it for granted that their systems can do more than one thing
 
 The Java platform is designed from the ground up to support concurrent programming, with basic concurrency support in the Java programming language and the Java class libraries. Since version 5.0, the Java platform has also included high-level concurrency APIs. This lesson introduces the platform's basic concurrency support and summarizes some of the high-level APIs in the java.util.concurrent packages.
 
-Java平台的设计初衷是为了支持并发编程，在Java编程语言和Java类库中提供基本的并发支持。从5.0版开始，Java平台还包含高级并发API。本课程介绍了平台的基本并发支持，并总结了java.util.concurrent包中的一些高级API 。
+Java平台的设计初衷是为了支持并发编程，在Java编程语言和Java类库中提供基本的并发支持。从5.0版开始，Java平台还包含高级并发API。本课程介绍了平台的基本并发支持，并总结了 java.util.concurrent 包中的一些高级API 。
 
 ## 资源
 
+https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html 
 https://docs.oracle.com/javase/tutorial/essential/index.html 
 https://www.baeldung.com/java-fork-join  
 
@@ -49,32 +50,6 @@ https://www.jianshu.com/p/98b68c97df9b  同上
 
 ### Questions and Exercises: Concurrency
 
-## 线程安全
 
-- 原子性，简单说就是相关操作不会中途被其他线程干扰，一般通过同步机制实现。</p>
-- 可见性，是一个线程修改了某个共享变量，其状态能够立即被其他线程知晓，通常被解释为将线程本地状态反映到主内存上，volatile 就是负责保证可见性的。
-- 有序性，是保证线程内串行语义，避免指令重排等。
 
-## 提供的同步方法
 
-### 低效
-
-Vector Stack Hashtable  
-
-Synchronized Wrapper  
-
-### 高效
-
-- 并发容器  ConcurrentHashMap(基于分离锁)、CopyOnWriteArrayList
-- 线程安全队列  ArrayBlockingQueue、SynchronousQueue
-
-Queque Deque ConcurrentHashMap CopyOnWriteArrayList
-
-## 其他
-
-现代 JDK 中，synchronized 已经被不断优化，可以不再过分担心性能差异，另外，相比于 ReentrantLock，它可以减少内存消耗，这是个非常大的优势。  
-
-## FAQ
-
-- AQS是什么  
-  http://ifeve.com/java-special-troops-aqs/

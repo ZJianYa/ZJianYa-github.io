@@ -1,0 +1,6 @@
+https://en.wikipedia.org/wiki/ACID
+
+Atomic 保证了一致性  
+Consistency 虽然保证了一致性，但是不保证正确性，这个一致性不知道包不包含 RR  
+Isolation 事务之间不会相互干涉/冲突，而是通过阻塞的方式“互不影响”  
+Durability 主要指数据不会丢失，不会出现数据丢失的情况  
