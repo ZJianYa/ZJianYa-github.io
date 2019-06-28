@@ -23,11 +23,11 @@
 
 ## 资源  
 
+https://spring.io/projects/spring-cloud
 https://cloud.spring.io/spring-cloud-static/spring-cloud-commons/2.1.2.RELEASE/single/spring-cloud-commons.html  
 https://resilience4j.readme.io/  
 https://resilience4j.readme.io/docs/circuitbreaker  断路器  
-
-https://spring.io/projects/spring-cloud  
+  
 http://developer.51cto.com/art/201809/583184.htm zookeeper  
 https://www.infoq.cn/article/h7RHGYekxZ_QvLPZ6I8y  微服务脚手架工具 vole  
 https://time.geekbang.org/course/detail/156-93922 nacos  

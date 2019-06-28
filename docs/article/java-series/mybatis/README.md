@@ -1,5 +1,8 @@
 # 概述
 
+http://www.mybatis.org/mybatis-3/zh/  
+http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/ 
+
 ## 背景
 
 ### ORM的主要作用
@@ -20,10 +23,14 @@ http://www.mybatis.org/mybatis-3/java-api.html
 
 ## 关联框架
 
-mybatis-Spring
+### mybatis-generator
 
-## 关于注解和文件配置方式的选择
+### Page helper
 
-1. 自动化 > 手动配置
-2. 可以配置 > 修改源码
-3. 数据尽量要可配置，凡是数据不能放在注解中（可以通过注解注入）
+### mybatis-Spring
+
+## 注解 VS XML
+
+1. 自动化 > 手动配置  
+2. 可以配置 > 修改源码  
+3. 数据尽量要可配置，凡是数据不能放在注解中（可以通过注解注入）  
