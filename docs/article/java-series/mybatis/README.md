@@ -1,7 +1,8 @@
 # 概述
 
 http://www.mybatis.org/mybatis-3/zh/  
-http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/ 
+http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/  
+https://github.com/mybatis  
 
 ## 背景
 
