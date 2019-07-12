@@ -36,13 +36,13 @@
 
 ## 使用中的FAQ
 
-- 所有的UPDATE都不能直接byPrimaryKey  
+- 所有的 UPDATE 都不能直接 byPrimaryKey  
 - http://www.mybatis.org/mybatis-3/ Selective 做什么用  
 - https://blog.csdn.net/u010398771/article/details/70768280 $和#的问题  
 - 批量插入，返回主键  
   https://www.cnblogs.com/xiao-lei/p/6809884.html
 - 经常为中间表生成单独类  
-- 一对多查询分页
+- 一对多查询分页 
   先在"一"的一面做分页，然后关联"多"的一面做外关联查询
 
 ## TODO
@@ -52,3 +52,10 @@
   那么什么情况下才会被使用呢？  
   连接池的链接如果不够用呢？  
   如果服务端的链接不够用呢？  
+
+- 多数据源  
+  https://xli1224.github.io/2018/03/11/spring-mybatis-multiple-datasource/  静态配置方法  
+  https://blog.csdn.net/tuesdayma/article/details/81081666 静态配置和动态切换的方法  
+  https://www.baeldung.com/spring-abstract-routing-data-source  
+  https://fizzylogic.nl/2016/01/24/make-your-spring-boot-application-multi-tenant-aware-in-2-steps/  
+  https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/lookup/IsolationLevelDataSourceRouter.html  

@@ -10,7 +10,7 @@
   https://c0d3p1ut0s.github.io/MyBatis%E6%A1%86%E6%9E%B6%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84SQL%E6%B3%A8%E5%85%A5/  MyBatis框架中常见的SQL注入  
 - 事务  
 - 缓存  
-  Spring也有cash，Mybatis也有cash，Redis也有cash，CDN也会有cash，操作系统也会cash，数据库内也有各种cash，计算机也有cash  
+  Spring也有 cache ，Mybatis也有 cache ，Redis也有 cache，CDN也会有 cache，操作系统也会 cache ，数据库内也有各种 cache ，计算机也有 cache  
   分别适合哪些应用场景/问题呢？  
 - mapper关联，我有两个这个xml 文件 都跟这个 dao 建立关系了，那不是就是冲突了？  
   通过动态代理来创建 mapper 的代理对象，执行每一个方法实际上都是由 InvocationHandler 来实现的  

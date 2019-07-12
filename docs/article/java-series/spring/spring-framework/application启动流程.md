@@ -19,12 +19,15 @@ ApplicationContext extends EnvironmentCapable, ListableBeanFactory, Hierarchical
 GenericApplicationContext 类间接继承了 ApplicationContext，还实现了 BeanDefinitionRegistry  
 GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry  
 
-## 加载（CMD)过程
+## 加载（CMD)过程和自动加载
 
-为什么我写成是加载 ConfigurationMetaData，而不是类）  
+为什么我写成是加载 ConfigurationMetaData ，而不是类  
 容器启动时，会通过某种途径加载 ConfigurationMetaData 。我认为一定是扫描了所有已经加载的类？
 BeanDefinitionReader 负责分析、解析 ConfigurationMetaData，生成 BeanDefinition ，注册到 BeanDefinitionRegistry。  
 
+下面是一个 Debug 快照，可以帮你快速找到扫描实现的具体位置， ClassPathBeanDefinitionScanner  
+
+```{}
 ClassPathBeanDefinitionScanner(ClassPathScanningCandidateComponentProvider).scanCandidateComponents(String) line: 424	
 ClassPathBeanDefinitionScanner(ClassPathScanningCandidateComponentProvider).findCandidateComponents(String) line: 316	
 ClassPathBeanDefinitionScanner.doScan(String...) line: 275	
@@ -41,7 +44,24 @@ AnnotationConfigApplicationContext(AbstractApplicationContext).invokeBeanFactory
 AnnotationConfigApplicationContext(AbstractApplicationContext).refresh() line: 531	
 SpringApplication.refresh(ApplicationContext) line: 775	
 SpringApplication.refreshContext(ConfigurableApplicationContext) line: 397	
+```
 
+### AutoConfigure
+
+从名字上我们就知道这个和类加载，还有点不一样，所以一定是在 CMD 加载之后完成的。  
+
+https://yq.aliyun.com/articles/617718?spm=a2c4e.11153940.0.0.3a03488eaNXlck&type=2  深入理解SpringBoot的过滤条件--AutoConfigure
+
+对于自动加载的，通过 `AutoConfigurationImportSelector.selectImports(AnnotationMetadata annotationMetadata)` 来实现，且委派给 `AutoConfigurationMetadataLoader.loadMetadata(ClassLoader classLoader)` 方法执行。    
+
+```{}
+public class AutoConfigurationImportSelector
+		implements DeferredImportSelector, BeanClassLoaderAware, ResourceLoaderAware,
+		BeanFactoryAware, EnvironmentAware, Ordered {
+		}
+```
+
+TODO 这里还有前提细节就是， AutoConfigurationImportSelector 是怎么被 ConfigurationClassParser 发现的呢？  
 
 ## 实例化
 
@@ -126,3 +146,6 @@ postProcessBeforeInitialization() 方法与 postProcessAfterInitialization() 分
 
 https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&mid=2247485736&idx=1&sn=2b153c843ad2a0f90b621a8739470331&chksm=ebf6d157dc8158410970c0da63ad61d653b8fee4736c86ee6e8716bb87d6c049a077280387a0&scene=27#wechat_redirect  一份详细的 Spring Boot 知识清单，Spring boot 概览
 
+https://www.jianshu.com/p/1ed18eebb299 SpringBoot AutoConfigure原理  
+https://yq.aliyun.com/articles/617718?spm=a2c4e.11153940.0.0.3a03488eaNXlck&type=2 深入理解SpringBoot的过滤条件--AutoConfigure  
+https://hacpai.com/article/1534608851208  SpringBoot 中的 spring-boot-autoconfigure 模块学习
