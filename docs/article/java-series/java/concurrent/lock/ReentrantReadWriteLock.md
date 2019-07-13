@@ -1,11 +1,3 @@
-
-https://www.infoq.cn/article/jdk1.8-abstractqueuedsynchronizer  
-https://www.infoq.cn/article/java8-abstractqueuedsynchronizer  
-
-ReentrantReadWriteLock 并不是 aqs 子类，而是使用了它的子类
-
-## ReentrantLock
-
 ReentrantLock 内部有两个 sync 的实现
 
 ReentrantLock.lock 调用  sync.lock()

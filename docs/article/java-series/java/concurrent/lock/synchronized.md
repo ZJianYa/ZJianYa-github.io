@@ -1,31 +1,5 @@
 # 概述
 
-## ReetrantLock & AQS
-
-ReetrantLock：更灵活，粒度更细，是否公平  
-
-线程安全的基本特性：  
-原子性/可见性/有序性  
-
-如果代码中有 synchronized ，用javap 反编译，可见：
-
-```{}
-11: astore_1
-12: monitorenter
-13: aload_0
-14: dup
-15: getfield  	#2              	// Field sharedState:I
-18: dup_x1
-…
-56: monitorexit
-```
-
-如果是静态代码
-
-```{}
-synchronized (ClassName.class) {}
-```
-
 ## sync & 锁的升级
 
 synchronized 代码块是由一对儿 monitorenter/monitorexit 指令实现的，Monitor 对象是同步的基本实现[单元](https://docs.oracle.com/javase/specs/jls/se10/html/jls-8.html#d5e13622)。
