@@ -1,5 +1,7 @@
 # 概述
 
+参考 https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651013019&idx=4&sn=20dd785873aa4c668a819c0edca1311a&chksm=bdbec7c88ac94ede7e1e6934be425ebdf03ae656ddc46349b1d86fc313222332c8f30e55b4ac&scene=27#wechat_redirect  
+
 ## sync & 锁的升级
 
 synchronized 代码块是由一对儿 monitorenter/monitorexit 指令实现的，Monitor 对象是同步的基本实现[单元](https://docs.oracle.com/javase/specs/jls/se10/html/jls-8.html#d5e13622)。

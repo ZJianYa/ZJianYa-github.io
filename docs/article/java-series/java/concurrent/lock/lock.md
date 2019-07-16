@@ -1,9 +1,8 @@
 # 概述
 
-- 掌握 synchronized、ReentrantLock 底层实现  
-- 理解锁膨胀、降级  
-- 理解偏斜锁、自旋锁、轻量级锁、重量级锁等概念  
-- 掌握并发包中 java.util.concurrent.lock 各种不同实现和案例分析  
+
+理解偏斜锁、自旋锁、轻量级锁、重量级锁等概念 ，理解锁的膨胀、降级可以参考 synchronized.md。  
+乐观锁不仅仅方式不仅包括 CAS，其实偏斜锁、轻量级锁在我开来都是乐观锁。  
 
 ## volatile
 
@@ -33,7 +32,7 @@ synchronized (ClassName.class) {}
 所有的 Lock 都是基于AQS来实现了。AQS 和 Condition 各自维护了不同的队列，在使用lock和condition的时候，其实就是两个队列的互相移动。  
 如果我们想自定义一个同步器，可以实现AQS。它提供了获取共享锁和互斥锁的方式，都是基于对state操作而言的。  
 
-ReentranLock这个是可重入的。其实要弄明白它为啥可重入的呢，咋实现的呢。其实它内部自定义了同步器Sync，这个又实现了AQS，同时又实现了AOS，而后者就提供了一种互斥锁持有的方式。其实就是每次获取锁的时候，看下当前维护的那个线程和当前请求的线程是否一样，一样就可重入了。
+ReentranLock 这个是可重入的。其实要弄明白它为啥可重入的呢，咋实现的呢。其实它内部自定义了同步器Sync，这个又实现了AQS，同时又实现了AOS，而后者就提供了一种互斥锁持有的方式。其实就是每次获取锁的时候，看下当前维护的那个线程和当前请求的线程是否一样，一样就可重入了。
 
 ## ReentrantLock
 
@@ -71,7 +70,7 @@ ReentrantLock 相比 synchronized ，因为可以像普通对象一样使用，�
 - 可以判断是否有线程，或者某个特定线程，在排队等待获取锁。
 - 可以响应中断请求。
 
-### Condition
+## Condition
 
 这里我特别想强调 **条件变量**（java.util.concurrent.Condition），如果说 ReentrantLock 是 synchronized 的替代选择，Condition 则是将 wait、notify、notifyAll 等操作转化为相应的对象，将复杂而晦涩的同步操作转变为直观可控的对象行为。
 

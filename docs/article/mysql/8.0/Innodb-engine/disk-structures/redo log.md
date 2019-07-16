@@ -4,11 +4,17 @@ MySQL 8.0 Reference Manual  /  The InnoDB Storage Engine  /  InnoDB On-Disk Stru
 
 The redo log is a disk-based data structure used during crash recovery to correct data written by incomplete transactions. During normal operations, the redo log encodes requests to change table data that result from SQL statements or low-level API calls. Modifications that did not finish updating the data files before an unexpected shutdown are replayed automatically during initialization, and before the connections are accepted. For information about the role of the redo log in crash recovery, see Section [15.17.2, “InnoDB Recovery”](https://dev.mysql.com/doc/refman/8.0/en/innodb-recovery.html).
 
-重做日志是在崩溃恢复期间用于纠正由未完成事务写入的数据的基于磁盘的数据结构。在正常操作期间，重做日志会对执行SQL（而造成的）更改表数据或者调用低级别API的请求进行编码。在初始化期间以及接受连接之前，将在意外关闭之前 未完成的更新数据文件的修改 自动重播。有关重做日志在崩溃恢复中的作用的信息，请参见 第15.17.2节“InnoDB恢复”。
+重做日志是在崩溃恢复期间用于纠正由未完成事务写入的数据的基于磁盘的数据结构。  
+在正常操作期间，重做日志会对执行SQL（而造成的）更改表数据或者调用低级别API的请求进行编码。  
+在初始化期间以及接受连接之前，意外关闭之前未完成的更新数据文件的修改 将被被自动重播。  
+有关重做日志在崩溃恢复中的作用的信息，请参见 第15.17.2节“InnoDB恢复”。  
 
 By default, the redo log is physically represented on disk by two files named ib_logfile0 and ib_logfile1. MySQL writes to the redo log files in a circular fashion. Data in the redo log is encoded in terms of records affected; this data is collectively referred to as redo. The passage of data through the redo log is represented by an ever-increasing LSN value.  
 
-默认，redo log 物理形式是磁盘上的两个文件： ib_logfile0 和 ib_logfile1。
+默认，redo log 物理形式是磁盘上的两个文件： ib_logfile0 和 ib_logfile1 。  
+MySQL 以循环方式写 redo log 日志。  
+重做日志中的数据根据受影响的记录进行编码; 这些数据统称为重做。  
+通过重做日志的 数据的 passage 由不断增加的 LSN 值表示。  
 
 For related information, see [Redo Log File Configuration](https://dev.mysql.com/doc/refman/8.0/en/innodb-init-startup-configuration.html#innodb-startup-log-file-configuration), and [Section 8.5.4, “Optimizing InnoDB Redo Logging”](https://dev.mysql.com/doc/refman/8.0/en/optimizing-innodb-logging.html).  
 更多相关信息，请参阅 重做日志文件配置和 第8.5.4节“优化InnoDB重做日志记录”。

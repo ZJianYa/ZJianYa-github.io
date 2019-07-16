@@ -1,10 +1,17 @@
 # 15.6.6 Undo Logs
 
+https://dev.mysql.com/doc/refman/8.0/en/innodb-undo-logs.html  
+
 An undo log is a collection of undo log records associated with a single read-write transaction. An undo log record contains information about how to undo the latest change by a transaction to a clustered index record. If another transaction needs to see the original data as part of a consistent read operation, the unmodified data is retrieved from undo log records. Undo logs exist within undo log segments, which are contained within rollback segments. Rollback segments reside in undo tablespaces and in the global temporary tablespace.  
-undo log 是与单个读写事务关联的 undo log 记录的集合。undo log 记录包含如何撤销最近事务的对一个聚簇索引记录的修改。 如果另一个事务需要将原始数据视为一致读取操作的一部分，则从撤消日志记录中检索未修改的数据。undo log 存在于 undo lo 段中，这些日志段包含在 回滚段中。回滚段驻留在 undo log 表空间和全局临时表空间中。
+undo log 是与单个读写事务关联的 undo log 记录的集合。  
+undo log 记录包含如何撤销最近事务的对一个聚簇索引记录的修改。  
+如果另一个事务需要将原始数据视为一致读取操作的一部分，则从撤消日志记录中检索未修改的数据。（可以保证一致性读）  
+undo log 存在于 undo log 段中，这些日志段包含在 回滚段中。回滚段驻留在 undo log 表空间和全局临时表空间中。
 
 Undo logs that reside in the global temporary tablespace are used for transactions that modify data in user-defined temporary tables. These undo logs are not redo-logged, as they are not required for crash recovery. They are used only for rollback while the server is running. This type of undo log benefits performance by avoiding redo logging I/O.  
-驻留在全局临时表空间中的 undo log 用于修改 户定义的临时表中的数据的事务。这些 undo logs 不会被重做日志记录，因为它们不是崩溃恢复所必需的。它们仅用于服务器运行时的回滚。这种类型的撤消日志通过避免 redo log I/O 来提高性能。
+驻留在全局临时表空间中的 undo log 用于 修改户定义的临时表中的数据的事务。  
+这些 undo logs 不会被重做日志记录，因为它们不是崩溃恢复所必需的。它们仅用于服务器运行时的回滚。  
+这种类型的撤消日志通过避免 redo logging I/O 来提高性能。  
 
 For information about data-at-rest encryption for undo logs, see Undo Log Encryption.
 
