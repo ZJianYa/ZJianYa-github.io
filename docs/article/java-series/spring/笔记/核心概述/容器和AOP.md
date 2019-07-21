@@ -139,3 +139,6 @@ https://www.baeldung.com/cglib  cglib demo
   虽然 Spring 自称默认使用 JDK 动态代理，但是我没有发现使用动态代理  
   为什么必须进入容器才可以实现 AOP ，因为 AOP 对象的创建是在程序初始化的？并非如此，是因为你所有的依赖需要向容器索要，所以他才可以控制。  
 
+https://www.cnblogs.com/10fly/p/9921136.html AOP 表达式  
+https://www.baeldung.com/spring-aop-annotation  Implementing a Custom Spring AOP Annotation  
+

@@ -66,14 +66,14 @@ Feign遇到异常的时候呢？
 
 ## Ribbon 负载均衡
 
-Ribbon是一个基于HTTP和TCP的客户端负载均衡工具，它基于Netflix Ribbon实现。通过Spring Cloud的封装，可以让我们轻松地将面向服务的REST模版请求自动转换成客户端负载均衡的服务调用。
+Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具，它基于 Netflix Ribbon 实现。通过 Spring Cloud 的封装，可以让我们轻松地将面向服务的REST模版请求自动转换成客户端负载均衡的服务调用。
 
-通常Ribbon是和Feign以及Eureka紧密协作：  
+通常 Ribbon 是和 Feign 以及 Eureka 紧密协作：  
 
-- 首先Ribbon会从 Eureka Client里获取到对应的服务注册表，也就知道了所有的服务都部署在了哪些机器上，在监听哪些端口号。
-- 然后Ribbon就可以使用默认的Round Robin算法，从中选择一台机器
+- 首先 Ribbon 会从 Eureka Client 里获取到对应的服务注册表，也就知道了所有的服务都部署在了哪些机器上，在监听哪些端口号。
+- 然后 Ribbon 就可以使用默认的 Round Robin 算法，从中选择一台机器
 
-Feign就会针对这台机器，构造并发起请求。  
+Feign 就会针对这台机器，构造并发起请求。  
 
 ## Hystrix 隔离、熔断以及降级、限流
 
