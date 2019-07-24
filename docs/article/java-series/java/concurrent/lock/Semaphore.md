@@ -1,3 +1,7 @@
+# 概述
+
+相比 lock ， Semaphore 可以让多个线程访问一个临界区。  
+这非常适合池化资源的常见，线程池，连接池（数据库，HTTP请求）。  
 
 ## guide
 
@@ -81,4 +85,6 @@ Memory consistency effects: Actions in a thread prior to calling a "release" met
 内存一致性效果：在调用“release”方法（如release（））之前的线程中的操作发生在成功的“获取”方法（例如另一个线程中的acquire（））之后的操作之前。  
 
 ## api
+
+## 案例 场景
 

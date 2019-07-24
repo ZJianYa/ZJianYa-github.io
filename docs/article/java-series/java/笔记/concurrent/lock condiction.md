@@ -1,3 +1,5 @@
+lock 解决互斥问题  
+condition 解决同步问题  
 
 ## 死锁
 
@@ -23,9 +25,26 @@
 加锁: state  += 1  
 解锁: state -= 1  
 
-### ReentrantLock
+### 原理
 
-可重入，在于写之前是需要先读的，那么可能重复加锁，因为可重入所以也需要多次释放锁。  
+#### 可见性 原子性 有序性
 
-t1  t2  
+假设 t1 的 lock 先于 t2 的 lock ，则
 
+- t1 的 lock 先于 t1 的 unlock
+- t2 的 lock 先于 t2 的 unlock
+- t1 的 ？？
+
+## condition
+
+### 等待队列
+
+不满足的时候，如何进入等待，如何退出 ？？
+
+#### 异步转同步
+
+通过先执行 await 阻塞 RPC 线程，然后在回调函数中 signalAll() 唤醒阻塞线程，且传递进去。  
+
+#### dubbo
+
+即便是用NIO，也是需要 await 和 signAll() ？

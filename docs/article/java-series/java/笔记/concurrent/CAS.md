@@ -1,12 +1,35 @@
 
-## 应用场景
+## 原理
+
+依赖硬件支持 CAS 指令，往往结合自旋使用，且一定会避开 BAB 问题。  
+大致逻辑如下：
+
+```{}
+class Adder{
+  volatile int count;
+  add(int offset) {
+    do {
+      newValue = count + 1
+    } while (!cas(version,expectValue,newValue))
+  }
+}
+```
+
+## 应用案例
 
 - 原子类
-  - 基本数据类型
-  - 引用对象类型
+  - 基本数据类型  
+    AtomicBoolean  AtomicInteger AtomicLong  
+  - 引用对象类型  
+    AtomicReference AtomicStampedReference AtomicMarkableReference
   - 原子化数组
-  - 对象属性更新器
-  - 累加器
+    AtomicIntegerArray  AtomicLongArray  AtomicReferenceArray
+  - 对象属性更新器  
+    AtomicIntegerFieldUpdater AtomicLongFieldUpdater AtomicReferenceFieldUpdater  
+  - 累加器  
+    DoubleAccumulator  
+    DoubleAdder  
+    LongAccumulator  
 
 ## FAQ
 
