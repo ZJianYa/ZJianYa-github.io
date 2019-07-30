@@ -169,6 +169,65 @@ Author:Doug Lea
 https://www.infoq.cn/article/jdk1.8-abstractqueuedsynchronizer  
 https://www.infoq.cn/article/java8-abstractqueuedsynchronizer  
 
+AbstractOwnableSynchronizer
+  private transient Thread exclusiveOwnerThread;
+
+AbstractQueuedSynchronizer extend AbstractOwnableSynchronizer
+  本是个链表  
+
+锁的状态:  volatile int state  
+线程安全的队列: 存储被挂起的线程  
+公平性: 是否需要进行入队、出队操作  
+private transient Thread exclusiveOwnerThread;
+
+### 原理解释
+
+利用 Happened-Before 原则我们和容易知道单线程的 lock  unlock 的实现，读写一下 volatile 变量即可。  
+然后我们利用 state 状态值的控制，可以实现锁状态的控制，以及多线程之间加锁 / 解锁。  
+
+### ReentrantLock.NonfairSync
+
+加锁逻辑:
+
+```
+{
+  if( 以为锁无人用，直接加锁 ) {
+    exclusiveOwnerThread = currentThread;
+  } else {
+    // 申请锁逻辑
+    tryAcquire();
+  }
+}
+```
+```
+```
+
+申请锁逻辑:
+  if( !申请非公平锁 && acquireQueued(addWaiter(Node.EXCLUSIVE), arg) ) {
+    Thread.currentThread().interrupt();
+  }
+
+申请非公平锁逻辑:  
+{
+  if( c=0 ) { // 以为锁已经释放
+    试图修改 state ，修改成功，则返回 true
+  }
+  else if (current == exclusiveOwnerThread) {
+    线程重入，修改 state， 修改成功，返回 true
+  }
+  上面的都不是则返回失败
+}
+
+addWaiter: 
+{
+
+}
+
+acquireQueued:  
+Acquires in exclusive uninterruptible mode for thread already in queue. Used by condition wait methods as well as acquire.
+队列中的线程，以 uninterruptible 的独占模式 Acquires 。 被条件等待方法和 acquire 使用。 
+
+
 ## FAQ
 
 还是没有搞清楚这个类究竟能做什么，以及如何使用。  
