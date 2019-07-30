@@ -5,66 +5,21 @@ JDK 官方文档并没有详尽的，或者按照 JDK 中的类来讲述整个�
 1. 官方 JDK
 2. Java 并发编程实战
 3. JDK 类库的角度
-4. 并发编程本身背景、因果的角度
-
-描述世界的本质是一件极其复杂的事情。  
+4. 并发编程本身背景、因果的角度  
 
 因为这一部分强调了并发，那么数据结构和并发之间要做权衡，并发优先  
-最终的知识点都落在各个具体的文章中，这里只提供 逻辑梳理 、 TODO 
+最终的知识点都落在各个具体的文章中，这里只提供 逻辑梳理 、 TODO  
 
-## 多线程
+## JDK 类库
 
-为了并行执行多任务，比如基本的 web 容器内部都是用了多线程
-
-### why
-
-### how
-
-### 问题
-
-#### 线程安全
-
-##### what
-
-原子性，简单说就是相关操作不会中途被其他线程干扰，
-可见性，是一个线程修改了某个共享变量，其状态能够立即被其他线程知晓，通常被解释为将线程本地状态反映到主内存上，volatile 就是负责保证可见性的。
-有序性，是保证线程内串行语义，避免指令重排等。
-
-##### why
-
-##### how
-
-###### 管程/信号量
-
-###### 锁
-
-根本上需要硬件支持，需要 禁用
-
-- synchronized
-- lock condition
-
-###### Immutable
-
-###### ThreadLocal
-
-###### CAS
-
-## 目录列表
-
-### 多线程
-
-### 锁
-
-### 工具和应用场景
-
-总结对比
-
-信号量：可以实现互斥、协同，但是容易死锁，且不能退出，没有Condition的概念的  
-管程：考虑了 Condition 即可以实现阻塞队列，可以退出  
-
-## 参考
-
-- 并发编程
+JDK 类库大致分为  
+同步容器： Collections.synchronizedList(new ArrayList());  Vector Stack HashTable  
+并发容器： List（CopyOnWriteArrayList） Map（ConcurrentHashMap ConcurrentSkipListMap） Set  
+阻塞队列 非阻塞队列 单端队列 双端队列 有界队列 无界队列  Queue/Deque  
+同步结构:  CountDownLatch 、 CyclicBarrier 、 Semaphore    
+Executor：  
+Future:  
+Fork/Join： 
 
 ## TODO
 
