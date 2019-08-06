@@ -48,7 +48,7 @@ mysql> select SQL_CACHE * from T where ID=10；
 
 ### bin log
 
-
+记录所有 DML 和 DDL 操作，配合 undo log 、 redo log 保证事务的完整性，一个常见的应用是用来做主从备份和读写分离。  
 
 ## 引擎层
 
@@ -60,3 +60,4 @@ mysql> select SQL_CACHE * from T where ID=10；
 
 ### undo log
 
+主要是方便事务回滚
