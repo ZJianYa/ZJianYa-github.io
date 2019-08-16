@@ -16,10 +16,6 @@ https://www.baeldung.com/java-fork-join
 
 https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247485701&idx=1&sn=471710ed79f15283edc0f341f17364ba&chksm=9bd0a49daca72d8bd4269f8980f412bbd5de0367e2bb9889694cedeefb9bbf8dace6165c6118&scene=27#wechat_redirect  HashMap? ConcurrentHashMap?  
 
-https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650123032&idx=1&sn=9b2d029e66cfe1a40454bdf2da37a915&chksm=f36bb639c41c3f2fbf55aa6a8b43dafb15c90af49b8565782866f68a776bde646a232608938b&scene=27#wechat_redirect  一篇文章彻底了解ThreadLocal的原理  
-https://www.cnblogs.com/xzwblog/p/7227509.html  同上
-https://www.jianshu.com/p/98b68c97df9b  同上
-
 ## 目录
 
 ### Processes and Threads

@@ -1,23 +1,102 @@
 
-## 前提
+从 run 方法说起
+```
+	public ConfigurableApplicationContext run(String... args) {
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+		// ① 声明上下文
+		ConfigurableApplicationContext context = null;
+		Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList<>();
+		configureHeadlessProperty();
+		SpringApplicationRunListeners listeners = getRunListeners(args);
+		listeners.starting();
+		try {
+			ApplicationArguments applicationArguments = new DefaultApplicationArguments(
+					args);
+			// ② 环境配置信息
+			ConfigurableEnvironment environment = prepareEnvironment(listeners,
+					applicationArguments);
+			configureIgnoreBeanInfo(environment);
+			Banner printedBanner = printBanner(environment);
+			// ③ 创建上下文
+			context = createApplicationContext();
+			exceptionReporters = getSpringFactoriesInstances(
+					SpringBootExceptionReporter.class,
+					new Class[] { ConfigurableApplicationContext.class }, context);
+			// ④ 准备上下文
+			prepareContext(context, environment, listeners, applicationArguments,
+					printedBanner);
+			// ⑤ 刷新上下文
+			refreshContext(context);
+			afterRefresh(context, applicationArguments);
+			stopWatch.stop();
+			if (this.logStartupInfo) {
+				new StartupInfoLogger(this.mainApplicationClass)
+						.logStarted(getApplicationLog(), stopWatch);
+			}
+			listeners.started(context);
+			callRunners(context, applicationArguments);
+		}
+		catch (Throwable ex) {
+			handleRunFailure(context, ex, exceptionReporters, listeners);
+			throw new IllegalStateException(ex);
+		}
 
-BeanDefinitionRegistry 规定了注册接口
-  registerBeanDefinition(String, BeanDefinition)
-  removeBeanDefinition(String)
-  getBeanDefinition(String)
-  containsBeanDefinition(String)
-  getBeanDefinitionNames()
-  getBeanDefinitionCount()
-  isBeanNameInUse(String)
+		try {
+			listeners.running(context);
+		}
+		catch (Throwable ex) {
+			handleRunFailure(context, ex, exceptionReporters, null);
+			throw new IllegalStateException(ex);
+		}
+		return context;
+	}
+```
 
-BeanFactory 规定了Bean的管理接口
+## 概念和分工
 
-ApplicationContext 接口集成了环境接口，其他 BeanFactory 接口 等其他接口
-ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
-		MessageSource, ApplicationEventPublisher, ResourcePatternResolver  
+* Reader 读取文件
+* BeanDefinition  
+  IoC容器想要管理各个业务对象以及它们之间的依赖关系，需要通过某种途径来记录和管理这些信息。  
+  BeanDefinition对象就承担了这个责任：容器中的每一个bean都会有一个对应的BeanDefinition实例，该实例负责保存bean对象的所有必要信息，包括bean对象的class类型、是否是抽象类、构造方法和参数、其它属性等等。  
+* BeanDefinitionRegistry 规定了注册接口  
+  * registerBeanDefinition(String, BeanDefinition)  
+  * removeBeanDefinition(String)  
+  * getBeanDefinition(String)  
+  * containsBeanDefinition(String)  
+  * getBeanDefinitionNames()  
+  * getBeanDefinitionCount()  
+  * isBeanNameInUse(String)  
+* BeanFactory 规定了Bean的管理接口  
+  * ApplicationContext 接口集成了环境接口，BeanFactory 接口 等其他接口  
+    ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,  
+		MessageSource, ApplicationEventPublisher, ResourcePatternResolver    
+  * GenericApplicationContext 类间接继承了 ApplicationContext，还实现了 BeanDefinitionRegistry  
+  * GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry  
+* DefaultListableBeanFactory 把很多信息存在了自己的属性中，他自己也实现了注册功能  
+   *  autowireCandidateResolver : AutowireCandidateResolver  
+   *  resolvableDependencies : Map<Class<?>, Object>  
+   *  beanDefinitionMap : Map<String, BeanDefinition>  
+   *  allBeanNamesByType : Map<Class<?>, String[]>  
+   *  singletonBeanNamesByType : Map<Class<?>, String[]>  
+   *  beanDefinitionNames : List<String>  
+   *  manualSingletonNames : Set<String>  
 
-GenericApplicationContext 类间接继承了 ApplicationContext，还实现了 BeanDefinitionRegistry  
-GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry  
+下面是 ApplicationContext 和 DefaultListableBeanFactory 的定义
+```{}
+public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
+  MessageSource, ApplicationEventPublisher, ResourcePatternResolver {
+}
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
+  implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
+  }
+```
+
+更多 ApplicationContext 可以参考截图
+
+![ClassPathXxxContext](https://github.com/ZJianYa/public-imgs/blob/master/spring/spring-beans/application-context-hierarchy.png?raw=true?raw=true)
+
+![ClassPathXxxContext](https://github.com/ZJianYa/public-imgs/blob/master/spring/spring-beans/default-context-hierarchy.png?raw=true?raw=true)
 
 ## 加载（CMD)过程和自动加载
 
