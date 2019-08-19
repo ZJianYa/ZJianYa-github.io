@@ -1,6 +1,10 @@
 
 ## web
 
+-Resource 源码分析
+  可以解决：如何使用相对路径，绝对路径等等
+- WebMvcConfigurationSupport 是Spring MVC里用来辅助配置的，而WebMvcAutoConfiguration是Spring Boot用来做WebMVC的自动配置的
+
 - 路径中有小数点
   https://blog.csdn.net/fay462298322/article/details/53106486  javaconfig
   https://blog.csdn.net/oschina_40730821/article/details/83310342 正则
@@ -18,10 +22,6 @@
   参考:https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/htmlsingle/#mvc-ann-webdatabinder  
   format  
   https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/htmlsingle/#format-configuring-formatting-globaldatetimeformat  
-  https://stackoverflow.com/questions/21776437/spring-mvc-ignores-global-date-format  
-  https://stackoverflow.com/questions/45440919/how-to-globally-configure-datetimeformat-pattern-in-spring-boot  
-  https://stackoverflow.com/questions/4823358/spring-configure-responsebody-json-format  
-  https://stackoverflow.com/questions/29027475/date-format-in-the-json-output-using-spring-boot
 
 - 上传下载，size和type的限定，多条件校验
 

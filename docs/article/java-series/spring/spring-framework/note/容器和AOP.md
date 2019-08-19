@@ -6,7 +6,7 @@ Aspect-oriented Programming (AOP) complements Object-oriented Programming (OOP) 
 面向切面编程提供另外一种编程结构思路来补充OOP。 OOP 中的关键单元是类，而 AOP 中的关键单元是 aspect。 Aspect 实现了横切多种类型和多个对象的模块化概念。 （这些概念在 AOP 术语中被称之为 “横切” 问题）
 
 One of the key components of Spring is the AOP framework. While the Spring IoC container does not depend on AOP (meaning you do not need to use AOP if you don’t want to), AOP complements Spring IoC to provide a very capable middleware solution.  
-Spring的一个关键组件是AOP框架。 虽然Spring IoC 容器不依赖于 AOP（意味着您不需要使用AOP），但 AOP 补充了 Spring IoC 以提供非常强大的中间件解决方案。
+Spring的一个关键组件是AOP框架。 虽然 Spring IoC 容器不依赖于 AOP（意味着您不需要使用AOP），但 AOP 补充了 Spring IoC 以提供非常强大的中间件解决方案。
 
 ...
 
