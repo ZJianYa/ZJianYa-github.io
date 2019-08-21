@@ -30,4 +30,30 @@ Eden 和 Survivor 的大小是按照比例设置的，如果 SurvivorRatio 是 8
 
 在 JVM 内部，如果 Xms 小于 Xmx，堆的大小并不会直接扩展到其上限，也就是说保留的空间（reserved）大于实际能够使用的空间（committed）。当内存需求不断增长的时候，JVM 会逐渐扩展新生代等区域的大小，所以 Virtual 区域代表的就是暂时不可用（uncommitted）的空间。
 
-## stack
+## 堆外内存
+
+### native
+
+首先是准备工作，开启 NMT 并选择 summary 模式
+
+-XX:NativeMemoryTracking=summary
+
+为了方便获取和对比 NMT 输出，选择在应用退出时打印 NMT 统计信息
+
+-XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics
+
+### Code Cache
+
+接下来是 Code 统计信息，显然这是 CodeCache 相关内存，也就是 JIT compiler 存储编译热点方法等信息的地方，JVM 提供了一系列参数可以限制其初始值和最大值等，例如：
+
+-XX:InitialCodeCacheSize=value  
+
+-XX:ReservedCodeCacheSize=value
+
+### Metaspace
+
+是 Class 内存占用，它所统计的就是 Java 类元数据所占用的空间，JVM 可以通过类似下面的参数调整其大小：
+
+-XX:MaxMetaspaceSize=value
+
+### stack

@@ -58,7 +58,7 @@ JVM的设计其实和操作系统有很多相像之处，毕竟很大程度上�
 
 ## OOM
 
-内存不够用了：    
+内存不够用了：  
 - 尝试回收空间也不行  
 - 判断出要分配的空间过大，直接OOM  
 
@@ -74,36 +74,3 @@ JVM的设计其实和操作系统有很多相像之处，毕竟很大程度上�
 
 直接内存不足，比如NIO分配空间
 
-## 参数
-
-### 堆区域内存
-
-
-
-### 堆外内存
-
-首先是准备工作，开启 NMT 并选择 summary 模式
-
--XX:NativeMemoryTracking=summary
-
-为了方便获取和对比 NMT 输出，选择在应用退出时打印 NMT 统计信息
-
--XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics
-
-### GC
-
--XX:+UseSerialGC
-
-### Code Cache
-
-接下来是 Code 统计信息，显然这是 CodeCache 相关内存，也就是 JIT compiler 存储编译热点方法等信息的地方，JVM 提供了一系列参数可以限制其初始值和最大值等，例如：
-
--XX:InitialCodeCacheSize=value  
-
--XX:ReservedCodeCacheSize=value
-
-### Metaspace
-
-是 Class 内存占用，它所统计的就是 Java 类元数据所占用的空间，JVM 可以通过类似下面的参数调整其大小：
-
--XX:MaxMetaspaceSize=value

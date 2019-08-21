@@ -4,8 +4,6 @@
 
 传递给JVM的参数，不一定是JVM的配置参数。
 
-http://jvmmemory.com/  可以在线配置参数
-
 ```{.shell}
 [root@localhost apache-tomcat-9.0.8]# java -help
 Usage: java [-options] class [args...]
@@ -64,6 +62,22 @@ See http://www.oracle.com/technetwork/java/javase/documentation/index.html for m
 ```
 
 https://docs.oracle.com/javame/8.0/api/meep/api/doc-files/system_properties.html
+
+## JVM Settings
+
+http://jvmmemory.com/  可以在线配置参数
+
+### JDK 7
+
+```
+-Xms512m -Xmx2048m -XX:PermSize=128m -XX:MaxPermSize=256m -XX:MinHeapFreeRatio=50 -XX:MaxHeapFreeRatio=100
+```
+
+### JDK 8 
+
+```
+-Xms -Xmx -XX:MetaspaceSize -XX:MaxMetaspaceSize -XX:MinHeapFreeRation -XX:MaxHeapFreeRation -XX:NewRatio=16 -XX:SurvivorRatio=32 -XX:+UseG1GC
+```
 
 ## Tomcat的常见参数
 

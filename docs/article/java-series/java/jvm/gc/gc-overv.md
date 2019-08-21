@@ -1,7 +1,7 @@
 # 概述
 
 官方文档：  
-https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/  
+https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/  Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide  
 https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html  Java - Print list of all -XX JVM options
 https://www.infoq.cn/article/2016/09/APM-jClarity-jvm-heap-oldgen 即便是顶级专家，也认为JVM 堆内存监测、性能调优依旧任重道远 
 
