@@ -58,17 +58,12 @@ GC 算法，GC 类型
 
 ## 参考
 
-http://blog.codinglabs.org/articles/consistent-hashing.html  一致性哈希
-http://www.zhuxingsheng.com/blog/gc-and-jvm-parameters.html  GC及JVM参数  
-https://www.jianshu.com/p/c76afd5b0df0  一个 JVM 参数引发的频繁 CMS GC  
-https://mp.weixin.qq.com/s?__biz=MzIwMzY1OTU1NQ==&mid=2247485815&idx=1&sn=3fc93825f40866c5cf5395ed0adc82c8&chksm=96cd493ba1bac02d6e819ba6d6ab13ef9b0f1fee817766cb65288fee48a724de8143047e8e26&scene=27#wechat_redirect jvm 内存溢出分析
-每个人碰到的问题都是不一样的，但是基本知识需要都是一样的  
-
-https://yq.aliyun.com/articles/699342?spm=a2c4e.11155472.0.0.210c134dAs742j#  JVM十六道面试题！
-
-类加载器 —> 内存模型—> JVM选项调优—> GC策略调优，内存泄露排查  
-
-https://zhuanlan.zhihu.com/p/44886959 饿了么工具部  
-
-https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&mid=2247486558&idx=1&sn=4f2f8539e14510e39972d28979bee47c&chksm=ebf6d421dc815d37e59b83e4aa2156617d4d3c25d5afd93a439eb77c1a78af264b72c7e23be1&scene=27#wechat_redirect G1 特性
+* 如何知道当前线程使用了哪种 GC，当然在 GC 日志中也必然会存在 GC 类型
+```
+[elsearch@localhost bin]$ ./jinfo -flags 3649
+VM Flags:
+-XX:+AlwaysPreTouch -XX:CICompilerCount=12 -XX:CMSInitiatingOccupancyFraction=75 -XX:ErrorFile=logs/hs_err_pid%p.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=data -XX:InitialHeapSize=1073741824 -XX:MaxDirectMemorySize=536870912 -XX:MaxHeapSize=1073741824 -XX:MaxNewSize=357892096 -XX:MaxTenuringThreshold=6 -XX:MinHeapDeltaBytes=196608 -XX:NewSize=357892096 -XX:NonNMethodCodeHeapSize=7591728 -XX:NonProfiledCodeHeapSize=122033256 -XX:OldSize=715849728 -XX:-OmitStackTraceInFastThrow -XX:ProfiledCodeHeapSize=122033256 -XX:ReservedCodeCacheSize=251658240 -XX:+SegmentedCodeCache -XX:ThreadStackSize=1024 -XX:+UseCMSInitiatingOccupancyOnly -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseFastUnorderedTimeStamps 
+[elsearch@localhost bin]$ 
+```
+* 查看可用的 GC 类型
 

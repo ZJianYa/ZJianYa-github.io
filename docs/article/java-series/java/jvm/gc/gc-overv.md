@@ -2,8 +2,9 @@
 
 官方文档：  
 https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/  Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide  
-https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html  Java - Print list of all -XX JVM options
-https://www.infoq.cn/article/2016/09/APM-jClarity-jvm-heap-oldgen 即便是顶级专家，也认为JVM 堆内存监测、性能调优依旧任重道远 
+https://docs.oracle.com/javase/10/gctuning/introduction-garbage-collection-tuning.htm Virtual Machine Garbage Collection Tuning Guide  
+https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html  Java - Print list of all -XX JVM options  
+https://www.infoq.cn/article/2016/09/APM-jClarity-jvm-heap-oldgen 即便是顶级专家，也认为JVM 堆内存监测、性能调优依旧任重道远  
 
 ## 回收原理和算法
 
@@ -17,12 +18,16 @@ Java 并没有选择引用计数，是因为其存在一个基本的难题，也
 JVM 会把虚拟机栈和本地方法栈中正在引用的对象、静态属性引用的对象和常量，作为 GC Roots。  
 
 方法区无用元数据的回收比较复杂。  
-一般来说初始化类加载器加载的类型是不会进行类卸载（unload）的；而普通的类型的卸载，往往是要求相应自定义类加载器本身被回收，所以大量使用动态类型的场合，需要防止元数据区（或者早期的永久代）不会 OOM。  
+一般来说初始化类加载器加载的类型是不会进行类卸载（unload）的；而普通的类型的卸载，往往是要求相应自定义类加载器本身被回收，所以大量使用动态类型的场合，需要防止元数据区（或者早期的永久代） OOM。  
 在 8u40 以后的 JDK 中，下面参数已经是默认的：
 
 ```{}
 -XX:+ClassUnloadingWithConcurrentMark
 ```
+
+#### 引用分类
+
+
 
 ### 算法
 
