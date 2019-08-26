@@ -10,6 +10,8 @@ Spring 的核心能力
 
 ## Context 和 AOP  
 
+在上下文的启动关闭 listener 中，编写
+
 ## Resource 
 
 ## TODO
