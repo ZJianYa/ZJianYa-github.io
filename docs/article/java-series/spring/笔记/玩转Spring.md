@@ -163,17 +163,40 @@ HandlerExceptionResolver
 
 ## 运行中的 Spring Boot
 
+### Actuator
+
+主要是各种 endpoint。
+
 ## Spring Cloud 和 Spring Native
 
 ### 86 简单理解微服务
 
+- 回顾之间的 Springboot 相关
+- 微服务的优点
+  与组织结构对齐
+- 缺点
+  - 分布式的缺点它都有
+  - 依赖复杂性，导致整个软件生命周期的复杂  开发 -- 测试 -- 运维（监控、治理）
+- FAQ
+  - 如何独立更新，比如 CA 中心的升级，比如财务模块的升级  
+    一个微服务模块不可访问的情况可以有很多，其中常见的：访问量过大，系统升级中...  
+
 ### 87 理解云原生
+
+- 适用于云环境的部署、运行、监控
+  - DevOps 方面的考虑，意外故障，中断与恢复
+  - 持续交付，不以版本为交付点    
+  - 微服务  
+  - 容器  
+- CNCF 和其主要项目
 
 ### 88-89 12 Factor
 
 对依赖是扫描？ 发现漏洞和升级？  
 发布平台可以批量发布应用程序  
 优雅关闭，而不是粗暴关闭，尤其是底层被依赖的服务  
+
+
 
 ### 90 Spring cloud 的组成部分
 
@@ -182,13 +205,87 @@ HandlerExceptionResolver
 
 ## 服务注册和发现
 
+### 91 Euraka
+
+### 92 Loadbalancer
+
+### 93 Feign
+
+### 94 DiscoveryClient
+
+### 95 Zookeeper
+
+### Consul
+
+### Nacos
+
+### 定制 DiscoveryClient  
+
+### 99 项目小结
+
 ## 服务熔断
+
+### 100~101 Hystrix
+
+### 如何观察服务熔断
+
+### 102~105 
+
+### 106 项目小结
 
 ## 服务配置
 
-## Spring Cloud Stream
+### 107 Git 配置中心
 
-## 服务链路追踪
+### 108 Git 配置中心
+
+### Zookeeper
+
+### Spring Cloud 的配置抽象
+
+### Consul
+
+### Nacos
+
+### 项目小结
+
+## Spring Cloud Stream ok
+
+### 114 认识 Spring Cloud Stream
+
+### RabbitMQ
+
+### Kafka
+
+### 117 小结
+
+## 服务链路追踪 ok
+
+### 118 Dapper 
+
+- 搞清楚请求流程，以及故障点（有可能并非软件层面，而是物理层面）  
+- 每个请求的耗时节点  
+- 概念
+  - Span
+  - Trace
+  - Anotation
+   - cs,sr,ss,cr
+
+### 119 Sleuth
+
+### 120 追踪消息链路
+
+### 121 除了链路还需要治理什么
+
+- 识别核心链路，能够通观全局  
+- 全栈压测，识别瓶颈和  
+- 依赖管理，代码静态检测，代码 review 和  
+
+### 122 小结
+
+综合运行 SpringBucks
+
+### 结束语
 
 ## TODO
 
@@ -199,3 +296,4 @@ HandlerExceptionResolver
 - 数据库，MySQL 和 ES 之间的对接  
 - 消息队列  
 - 单点登录  
+- Sleuth 怎么判断和生成TracId、 SpanID , exportable 是什么？     

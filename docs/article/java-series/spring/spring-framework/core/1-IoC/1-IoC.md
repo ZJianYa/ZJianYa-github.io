@@ -184,6 +184,18 @@ bean定义中的depends-on属性既可以指定初始化时间依赖关系，也
 
 ## 1.8. Container Extension Points
 
+Typically, an application developer does not need to subclass ApplicationContext implementation classes. Instead, the Spring IoC container can be extended by plugging in implementations of special integration interfaces. The next few sections describe these integration interfaces.
+
+通常，应用程序 developer 不需要实现 ApplicationContext 子类。  
+IoC 容器可以通过可插拔的集成接口实现进行扩展。  
+下面几个部分讲述这些集成扩展。  
+
+### 1.8.1. Customizing beans using a BeanPostProcessor
+
+### 1.8.2. Customizing configuration metadata with a BeanFactoryPostProcessor
+
+### 1.8.3. Customizing instantiation logic with a FactoryBean
+
 ## 1.9. Annotation-based container configuration
 
 ## 1.10. Classpath scanning and managed components
