@@ -16,5 +16,3 @@
 ## 编写服务端
 
 现在我们需要配置服务端端口，一个`Git-url`提供`version-controlled configuration content`.  
-
-## 

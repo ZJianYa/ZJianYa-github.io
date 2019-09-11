@@ -1,25 +1,64 @@
 # 概述
 
-- 服务
-  - 配置 common/cloud config/Eureka/Consul  
-  - 注册/发现/健康监测  缓存时效  Ribbon  Feign。
-  - 网关:流量调度/限流/负载均衡 （客户端负载均衡/服务端负载均衡)  
-  - 管理:启停，扩容，调度，限流  
-  - 监控:链路/健康监测(内存/存储/网络/应用运行状态)  Dapper Sleuth  
-  - 埋点 手动/agent  
-  - CAS，SSO  
-  - 容错:网络故障/熔断/降级/多副本(同时可以负载均衡，还需要能自动切换，数据一致性)/
-    缓存时效/自我健康监测  
+学习指南：  
+* 需要先了解一下什么是微服务，其特点和常见要素  
+* Spring Cloud 更多的是体现了一种架构思想，而并不旨在提供具体实现，有一点 cncf 的意思。  
+  我们应该先从 Application Context Services 和 Common Abstractions 入手。  
+* 当然最终我们还是要用某种具体实现来落地的  
 
-- 常见手段
-  - 消息队列，适用性：缓冲，削峰填谷，解耦合。FAQ：幂等性，事务性。  
-  - 缓存:  
-  - RPC:事务性，幂等性。  
-  - zookeeper 是一个综合管家  
-  - 分布式事务  
+## 官方目录
 
-大型的数据中心和我们想象的一定是不一样的，一定分了很多区域，既要实现区域自治，又要实现区域协调。  
-区域内部时效一定很强，区域之间时效可以稍弱。  
+https://cloud.spring.io/spring-cloud-static/Greenwich.SR1/multi/multi_spring-cloud.html
+
+### Cloud Native Applications
+
+#### Spring Cloud Context: Application Context Services
+
+#### Spring Cloud Commons: Common Abstractions
+
+### Spring Cloud Config
+
+#### Quick Start
+
+#### Spring Cloud Config Server
+
+#### 6. Serving Alternative Formats
+#### 7. Serving Plain Text
+#### 8. Embedding the Config Server
+#### 9. Push Notifications and Spring Cloud Bus
+#### 10. Spring Cloud Config Client
+
+### III. Spring Cloud Netflix
+
+#### 11. Service Discovery: Eureka Clients
+#### 12. Service Discovery: Eureka Server
+#### 13. Circuit Breaker: Hystrix Clients
+#### 14. Circuit Breaker: Hystrix Dashboard
+#### 15. Hystrix Timeouts And Ribbon Clients
+#### 16. Client Side Load Balancer: Ribbon
+#### 17. External Configuration: Archaius
+#### 18. Router and Filter: Zuul
+#### 19. Polyglot support with Sidecar
+#### 20. Retrying Failed Requests
+#### 21. HTTP Clients
+#### 22. Modules In Maintenance Mode
+
+### IV. Spring Cloud OpenFeign
+### V. Spring Cloud Stream
+### VI. Binder Implementations
+### VII. Spring Cloud Bus
+### VIII. Spring Cloud Sleuth
+### IX. Spring Cloud Consul
+### X. Spring Cloud Zookeeper
+### XI. Spring Cloud Security
+### XII. Spring Cloud for Cloud Foundry
+### XIII. Spring Cloud Contract
+### XIV. Spring Cloud Vault
+### XV. Spring Cloud Gateway
+### XVI. Spring Cloud Function
+### XVII. Spring Cloud Kubernetes
+### XVIII. Spring Cloud GCP
+### XIX. Appendix: Compendium of Configuration Properties
 
 ## 资源  
 

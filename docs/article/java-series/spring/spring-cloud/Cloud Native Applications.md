@@ -7,7 +7,7 @@ Cloud Native是一种应用程序开发风格，鼓励在持续交付和价值�
 
 Many of those features are covered by Spring Boot, on which Spring Cloud builds. Some more features are delivered by Spring Cloud as two libraries: Spring Cloud Context and Spring Cloud Commons. Spring Cloud Context provides utilities and special services for the ApplicationContext of a Spring Cloud application (bootstrap context, encryption, refresh scope, and environment endpoints). Spring Cloud Commons is a set of abstractions and common classes used in different Spring Cloud implementations (such as Spring Cloud Netflix and Spring Cloud Consul).
 
-Spring Boot构建了Spring Boot中的许多功能。Spring Cloud将更多功能作为两个库提供：Spring Cloud Context 和 Spring Cloud Commons。Spring Cloud Context 为 ApplicationContext Spring Cloud 应用程序（引导上下文，加密，刷新范围和环境端点）提供实用程序和特殊服务。Spring Cloud Commons 是一组用于不同Spring Cloud实现的抽象和公共类（例如Spring Cloud Netflix和Spring Cloud Consul）。  
+Spring Boot 构建了 Spring Boot 中的许多功能。Spring Cloud将更多功能作为两个库提供：Spring Cloud Context 和 Spring Cloud Commons 。Spring Cloud Context 为 ApplicationContext Spring Cloud 应用程序（bootstrap context, encryption, refresh scope, and environment endpoints）提供实用程序和特殊服务。Spring Cloud Commons 是一组用于不同Spring Cloud实现的抽象和公共类（例如Spring Cloud Netflix和Spring Cloud Consul）。  
 
 If you get an exception due to "Illegal key size" and you use Sun’s JDK, you need to install the Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files. See the following links for more information:
 
@@ -29,17 +29,18 @@ Spring Cloud是在非限制性Apache 2.0许可下发布的。如果您想为文�
 
 Spring Boot has an opinionated view of how to build an application with Spring. For instance, it has conventional locations for common configuration files and has endpoints for common management and monitoring tasks. Spring Cloud builds on top of that and adds a few features that probably all components in a system would use or occasionally need.  
 
-Spring Boot有一个关于如何使用Spring构建应用程序的观点。例如，它具有常见配置文件的常规位置，并具有用于常见管理和监视任务的端点。Spring Cloud构建于此之上，并添加了一些功能，可能是系统中的所有组件都可能使用或偶尔需要的功能。  
+Spring Boot 有一个关于如何使用Spring构建应用程序的观点。例如，它具有常见配置文件的常规位置，并具有用于常见管理和监视任务的端点。  
+Spring Cloud 构建于此之上，并添加了一些功能，可能是系统中的所有组件都可能使用或偶尔需要的功能。  
 
 ### The Bootstrap Application Context
 
 A Spring Cloud application operates by creating a “bootstrap” context, which is a parent context for the main application. It is responsible for loading configuration properties from the external sources and for decrypting properties in the local external configuration files. The two contexts share an Environment, which is the source of external properties for any Spring application. By default, bootstrap properties (not bootstrap.properties but properties that are loaded during the bootstrap phase) are added with high precedence, so they cannot be overridden by local configuration.
 
-Spring Cloud应用程序通过创建“引导程序”上下文来运行，该上下文是主应用程序的父上下文。它负责从外部源加载配置属性以及解密本地外部配置文件中的属性。这两个上下文共享一个Environment，它是任何Spring应用程序的外部属性的来源。默认情况下，引导属性（不是bootstrap.properties在引导阶段加载的属性）以高优先级添加，因此本地配置不能覆盖它们。  
+Spring Cloud 应用程序通过创建“引导程序”上下文来运行，该上下文是主应用程序的父上下文。它负责从外部源加载配置属性以及解密本地外部配置文件中的属性。这两个上下文共享一个Environment，它是任何Spring应用程序的外部属性的来源。默认情况下，引导属性（不是bootstrap.properties在引导阶段加载的属性）以高优先级添加，因此本地配置不能覆盖它们。  
 
 The bootstrap context uses a different convention for locating external configuration than the main application context. Instead of application.yml (or .properties), you can use bootstrap.yml, keeping the external configuration for bootstrap and main context nicely separate. The following listing shows an example:  
 
-引导上下文使用不同的约定来定位外部配置而不是主应用程序上下文。而不是application.yml（或.properties），您可以使用bootstrap.yml，保持引导程序和主要上下文的外部配置很好地分开。以下清单显示了一个示例：  
+引导上下文使用不同的约定来定位外部配置而不是主应用程序上下文。而不是 application.yml（或.properties），您可以使用bootstrap.yml，保持引导程序和主要上下文的外部配置很好地分开。以下清单显示了一个示例：  
 
 **bootstrap.yml**
 
@@ -54,27 +55,36 @@ spring：
 
 If your application needs any application-specific configuration from the server, it is a good idea to set the spring.application.name (in bootstrap.yml or application.yml). In order for the property spring.application.name to be used as the application’s context ID you must set it in bootstrap.[properties | yml].  
 
-如果您的应用程序需要来自服务器的任何特定于应用程序的配置，则最好设置 spring.application.name（in bootstrap.yml或application.yml）。spring.application.name要将属性用作应用程序的上下文ID，您必须将其设置为bootstrap.[properties | yml]。
+如果您的应用程序需要来自服务器的任何特定于应用程序的配置，则最好设置 spring.application.name（in bootstrap.yml或application.yml）。  
+为了将 spring.application.name 用作应用程序的上下文ID，您必须在 bootstrap.[properties | yml] 中设置他。
 
 You can disable the bootstrap process completely by setting spring.cloud.bootstrap.enabled=false (for example, in system properties).  
-您可以通过设置spring.cloud.bootstrap.enabled=false（例如，在系统属性中）完全禁用引导过程。  
+您可以通过设置 spring.cloud.bootstrap.enabled=false（例如，在系统属性中）完全禁用引导过程。  
 
 ### Application Context Hierarchies
 
 If you build an application context from SpringApplication or SpringApplicationBuilder, then the Bootstrap context is added as a parent to that context. It is a feature of Spring that child contexts inherit property sources and profiles from their parent, so the “main” application context contains additional property sources, compared to building the same context without Spring Cloud Config. The additional property sources are:  
 
-如果从`SpringApplication`或构建应用程序上下文`SpringApplicationBuilder`，则将Bootstrap上下文添加为该上下文的父级。Spring的一个特性是子上下文从其父级继承属性源和配置文件，因此与构建没有`Spring Cloud Config`的相同上下文相比，“主”应用程序上下文包含其他属性源。其他财产来源是：
+如果你通过 SpringApplicationBuilder 构建一个 application context ，则 Bootstrap context 作为 parent 添加到这个上线文上。  
+child contexts 从 parent 继承 property sources and profiles 是 Spring 的一个特性，所以 “main” application context 包含额外的属性，相对于没有 Spring Cloud Config 的 context 。  
+额外的 property sources 是: 
 
 * “bootstrap”: If any PropertySourceLocators are found in the Bootstrap context and if they have non-empty properties, an optional CompositePropertySource appears with high priority. An example would be properties from the Spring Cloud Config Server. See “Customizing the Bootstrap Property Sources” for instructions on how to customize the contents of this property source.  
-“bootstrap”：如果`PropertySourceLocators`在Bootstrap上下文中找到任何内容，并且它们具有非空属性，`CompositePropertySource`则会显示具有高优先级的可选项。一个例子是`Spring Cloud Config Server`的属性。有关如何自定义此属性源内容的说明，请参阅“ 自定义Bootstrap属性源 ”。  
+
+* “bootstrap”：如果`PropertySourceLocators`在Bootstrap上下文中找到任何内容，并且它们具有非空属性，`CompositePropertySource`则会显示具有高优先级的可选项。一个例子是`Spring Cloud Config Server`的属性。有关如何自定义此属性源内容的说明，请参阅“ 自定义Bootstrap属性源 ”。  
 
 * “applicationConfig: [classpath:bootstrap.yml]” (and related files if Spring profiles are active): If you have a bootstrap.yml (or .properties), those properties are used to configure the Bootstrap context. Then they get added to the child context when its parent is set.   
 They have lower precedence than the application.yml (or .properties) and any other property sources that are added to the child as a normal part of the process of creating a Spring Boot application. See “Changing the Location of Bootstrap Properties” for instructions on how to customize the contents of these property sources.  
-“applicationConfig：[classpath：bootstrap.yml]”（以及相关文件，如果Spring配置文件处于活动状态）：如果您有bootstrap.yml（或.properties），则使用这些属性配置Bootstrap上下文。然后，在设置其父级时，它们将添加到子上下文中。它们的优先级低于application.yml（或.properties）以及作为创建Spring Boot应用程序过程的正常部分添加到子级的任何其他属性源。有关如何自定义这些属性源的内容的说明，请参阅“ 更改Bootstrap属性的位置 ”。
+
+* “applicationConfig：[classpath：bootstrap.yml]”（以及相关文件，如果Spring配置文件处于活动状态）：如果您有bootstrap.yml（或.properties），则使用这些属性配置Bootstrap上下文。然后，在设置其父级时，它们将添加到子上下文中。它们的优先级低于application.yml（或.properties）以及作为创建Spring Boot应用程序过程的正常部分添加到子级的任何其他属性源。有关如何自定义这些属性源的内容的说明，请参阅“ 更改Bootstrap属性的位置 ”。
 
 Because of the ordering rules of property sources, the “bootstrap” entries take precedence. However, note that these do not contain any data from bootstrap.yml, which has very low precedence but can be used to set defaults.  
 
+由于顺序规则， “bootstrap” 实体有更高的优先级。但是，注意不包含任何 bootstrap.yml 中的数据，它具有非常低的优先级，可用于设置默认值。  
+
 You can extend the context hierarchy by setting the parent context of any ApplicationContext you create — for example, by using its own interface or with the SpringApplicationBuilder convenience methods (parent(), child() and sibling()). The bootstrap context is the parent of the most senior ancestor that you create yourself. Every context in the hierarchy has its own “bootstrap” (possibly empty) property source to avoid promoting values inadvertently from parents down to their descendants. If there is a Config Server, every context in the hierarchy can also (in principle) have a different spring.application.name and, hence, a different remote property source. Normal Spring application context behavior rules apply to property resolution: properties from a child context override those in the parent, by name and also by property source name. (If the child has a property source with the same name as the parent, the value from the parent is not included in the child).
+
+您可以通过设置您创建的任何ApplicationContext的父上下文来扩展上下文层次结构 - 例如，通过使用自己的接口或SpringApplicationBuilder便捷方法（parent（），child（）和sibling（））。引导上下文是您自己创建的最高级祖先的父级。层次结构中的每个上下文都有自己的“引导程序”（可能是空的）属性源，以避免从父级到其后代无意中提升值。如果存在Config Server，则层次结构中的每个上下文（原则上）也可以具有不同的spring.application.name，因此具有不同的远程属性源。普通的Spring应用程序上下文行为规则适用于属性解析：来自子上下文的属性按名称和属性源名称覆盖父级中的属性。 （如果子项具有与父项具有相同名称的属性源，则父项中的值不包含在子项中）
 
 Note that the SpringApplicationBuilder lets you share an Environment amongst the whole hierarchy, but that is not the default. Thus, sibling contexts, in particular, do not need to have the same profiles or property sources, even though they may share common values with their parent.
 
@@ -127,7 +137,7 @@ If you create a jar with this class in it and then add a META-INF/spring.factori
 
 If you are going to use Spring Boot to configure log settings than you should place this configuration in `bootstrap.[yml | properties] if you would like it to apply to all events.
 
->	For Spring Cloud to initialize logging configuration properly you cannot use a custom prefix. For example, using custom.loggin.logpath will not be recognized by Spring Cloud when initializing the logging system.
+> For Spring Cloud to initialize logging configuration properly you cannot use a custom prefix. For example, using custom.loggin.logpath will not be recognized by Spring Cloud when initializing the logging system.  
 
 ### Environment Changes
 
@@ -194,428 +204,3 @@ For a Spring Boot Actuator application, some additional management endpoints are
 
 >	If you disable the /actuator/restart endpoint then the /actuator/pause and /actuator/resume endpoints will also be disabled since they are just a special case of /actuator/restart.
 
-## Spring Cloud Commons: Common Abstractions
-
-Patterns such as service discovery, load balancing, and circuit breakers lend themselves to a common abstraction layer that can be consumed by all Spring Cloud clients, independent of the implementation (for example, discovery with Eureka or Consul).
-
-### @EnableDiscoveryClient
-
-Spring Cloud Commons provides the @EnableDiscoveryClient annotation. This looks for implementations of the DiscoveryClient interface with META-INF/spring.factories. Implementations of the Discovery Client add a configuration class to spring.factories under the org.springframework.cloud.client.discovery.EnableDiscoveryClient key. Examples of DiscoveryClient implementations include Spring Cloud Netflix Eureka, Spring Cloud Consul Discovery, and Spring Cloud Zookeeper Discovery.
-
-By default, implementations of DiscoveryClient auto-register the local Spring Boot server with the remote discovery server. This behavior can be disabled by setting autoRegister=false in @EnableDiscoveryClient.
-
->@EnableDiscoveryClient is no longer required. You can put a DiscoveryClient implementation on the classpath to cause the Spring Boot application to register with the service discovery server.
-
-### Health Indicator
-
-Commons creates a Spring Boot HealthIndicator that DiscoveryClient implementations can participate in by implementing DiscoveryHealthIndicator. To disable the composite HealthIndicator, set spring.cloud.discovery.client.composite-indicator.enabled=false. A generic HealthIndicator based on DiscoveryClient is auto-configured (DiscoveryClientHealthIndicator). To disable it, set spring.cloud.discovery.client.health-indicator.enabled=false. To disable the description field of the DiscoveryClientHealthIndicator, set spring.cloud.discovery.client.health-indicator.include-description=false. Otherwise, it can bubble up as the description of the rolled up HealthIndicator.
-
-### Ordering DiscoveryClient instances
-
-DiscoveryClient interface extends Ordered. This is useful when using multiple discovery clients, as it allows you to define the order of the returned discovery clients, similar to how you can order the beans loaded by a Spring application. By default, the order of any DiscoveryClient is set to 0. If you want to set a different order for your custom DiscoveryClient implementations, you just need to override the getOrder() method so that it returns the value that is suitable for your setup. Apart from this, you can use properties to set the order of the DiscoveryClient implementations provided by Spring Cloud, among others ConsulDiscoveryClient, EurekaDiscoveryClient and ZookeeperDiscoveryClient. In order to do it, you just need to set the spring.cloud.{clientIdentifier}.discovery.order (or eureka.client.order for Eureka) property to the desired value.
-
-### ServiceRegistry
-
-Commons now provides a ServiceRegistry interface that provides methods such as register(Registration) and deregister(Registration), which let you provide custom registered services. Registration is a marker interface.
-
-The following example shows the ServiceRegistry in use:
-
-```
-@Configuration
-@EnableDiscoveryClient(autoRegister=false)
-public class MyConfiguration {
-    private ServiceRegistry registry;
-
-    public MyConfiguration(ServiceRegistry registry) {
-        this.registry = registry;
-    }
-
-    // called through some external process, such as an event or a custom actuator endpoint
-    public void register() {
-        Registration registration = constructRegistration();
-        this.registry.register(registration);
-    }
-}
-```
-
-Each ServiceRegistry implementation has its own Registry implementation.
-
-* ZookeeperRegistration used with ZookeeperServiceRegistry
-
-* EurekaRegistration used with EurekaServiceRegistry
-
-* ConsulRegistration used with ConsulServiceRegistry
-
-If you are using the ServiceRegistry interface, you are going to need to pass the correct Registry implementation for the ServiceRegistry implementation you are using.
-
-### ServiceRegistry Auto-Registration
-
-By default, the ServiceRegistry implementation auto-registers the running service. To disable that behavior, you can set: * @EnableDiscoveryClient(autoRegister=false) to permanently disable auto-registration. * spring.cloud.service-registry.auto-registration.enabled=false to disable the behavior through configuration.
-
-### ServiceRegistry Auto-Registration Events
-
-There are two events that will be fired when a service auto-registers. The first event, called InstancePreRegisteredEvent, is fired before the service is registered. The second event, called InstanceRegisteredEvent, is fired after the service is registered. You can register an ApplicationListener(s) to listen to and react to these events.
-
->These events will not be fired if spring.cloud.service-registry.auto-registration.enabled is set to false.
-
-### Service Registry Actuator Endpoint
-
-Spring Cloud Commons provides a /service-registry actuator endpoint. This endpoint relies on a Registration bean in the Spring Application Context. Calling /service-registry with GET returns the status of the Registration. Using POST to the same endpoint with a JSON body changes the status of the current Registration to the new value. The JSON body has to include the status field with the preferred value. Please see the documentation of the ServiceRegistry implementation you use for the allowed values when updating the status and the values returned for the status. For instance, Eureka’s supported statuses are UP, DOWN, OUT_OF_SERVICE, and UNKNOWN.
-
-### Spring RestTemplate as a Load Balancer Client
-
-RestTemplate can be automatically configured to use a Load-balancer client under the hood. To create a load-balanced RestTemplate, create a RestTemplate @Bean and use the @LoadBalanced qualifier, as shown in the following example:
-```
-@Configuration
-public class MyConfiguration {
-
-    @LoadBalanced
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-}
-
-public class MyClass {
-    @Autowired
-    private RestTemplate restTemplate;
-
-    public String doOtherStuff() {
-        String results = restTemplate.getForObject("http://stores/stores", String.class);
-        return results;
-    }
-}
-```
-
-A RestTemplate bean is no longer created through auto-configuration. Individual applications must create it.
-
-The URI needs to use a virtual host name (that is, a service name, not a host name). The Ribbon client is used to create a full physical address. See RibbonAutoConfiguration for details of how the RestTemplate is set up.
-
->In order to use a load-balanced RestTemplate, you need to have a load-balancer implementation in your classpath. The recommended implementation is BlockingLoadBalancerClient - add org.springframework.cloud:spring-cloud-loadbalancer in order to use it. The RibbonLoadBalancerClient also can be used, but it’s now under maintenance and we do not recommend adding it to new projects.
-
->	If you want to use BlockingLoadBalancerClient, make sure you do not have RibbonLoadBalancerClient in the project classpath, as for backward compatibility reasons, it will be used by default.
-
-### Spring WebClient as a Load Balancer Client
-
-WebClient can be automatically configured to use a load-balancer client. To create a load-balanced WebClient, create a WebClient.Builder @Bean and use the @LoadBalanced qualifier, as shown in the following example:
-
-```
-@Configuration
-public class MyConfiguration {
-
-	@Bean
-	@LoadBalanced
-	public WebClient.Builder loadBalancedWebClientBuilder() {
-		return WebClient.builder();
-	}
-}
-
-public class MyClass {
-    @Autowired
-    private WebClient.Builder webClientBuilder;
-
-    public Mono<String> doOtherStuff() {
-        return webClientBuilder.build().get().uri("http://stores/stores")
-        				.retrieve().bodyToMono(String.class);
-    }
-}
-```
-
-The URI needs to use a virtual host name (that is, a service name, not a host name). The Ribbon client is used to create a full physical address.
-
->If you want to use a @LoadBalanced WebClient.Builder, you need to have a loadbalancer implementation in the classpath. It is recommended that you add the org.springframework.cloud:spring-cloud-loadbalancer dependency to your project. Then, ReactiveLoadBalancer will be used underneath. Alternatively, this functionality will also work with spring-cloud-starter-netflix-ribbon, but the request will be handled by a non-reactive LoadBalancerClient under the hood. Additionally, spring-cloud-starter-netflix-ribbon is already in maintenance mode, so we do not recommned adding it to new projects.
-
->	The ReactorLoadBalancer used underneath supports caching. If cacheManager is detected, cached version of ServiceInstanceSupplier will be used. If not, we will retrieve instances from discovery service without caching them. We recommend enabling caching in your project if you use ReactiveLoadBalancer.
-
-### Retrying Failed Requests
-
-A load-balanced RestTemplate can be configured to retry failed requests. By default, this logic is disabled. You can enable it by adding Spring Retry to your application’s classpath. The load-balanced RestTemplate honors some of the Ribbon configuration values related to retrying failed requests. You can use client.ribbon.MaxAutoRetries, client.ribbon.MaxAutoRetriesNextServer, and client.ribbon.OkToRetryOnAllOperations properties. If you would like to disable the retry logic with Spring Retry on the classpath, you can set spring.cloud.loadbalancer.retry.enabled=false. See the Ribbon documentation for a description of what these properties do.
-
-If you would like to implement a BackOffPolicy in your retries, you need to create a bean of type LoadBalancedRetryFactory and override the createBackOffPolicy method:
-
-```
-@Configuration
-public class MyConfiguration {
-    @Bean
-    LoadBalancedRetryFactory retryFactory() {
-        return new LoadBalancedRetryFactory() {
-            @Override
-            public BackOffPolicy createBackOffPolicy(String service) {
-        		return new ExponentialBackOffPolicy();
-        	}
-        };
-    }
-}
-```
-
->client in the preceding examples should be replaced with your Ribbon client’s name.
-
-If you want to add one or more RetryListener implementations to your retry functionality, you need to create a bean of type LoadBalancedRetryListenerFactory and return the RetryListener array you would like to use for a given service, as shown in the following example:
-
-```
-@Configuration
-public class MyConfiguration {
-    @Bean
-    LoadBalancedRetryListenerFactory retryListenerFactory() {
-        return new LoadBalancedRetryListenerFactory() {
-            @Override
-            public RetryListener[] createRetryListeners(String service) {
-                return new RetryListener[]{new RetryListener() {
-                    @Override
-                    public <T, E extends Throwable> boolean open(RetryContext context, RetryCallback<T, E> callback) {
-                        //TODO Do you business...
-                        return true;
-                    }
-
-                    @Override
-                     public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
-                        //TODO Do you business...
-                    }
-
-                    @Override
-                    public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
-                        //TODO Do you business...
-                    }
-                }};
-            }
-        };
-    }
-}
-```
-
-### Multiple RestTemplate objects
-
-If you want a RestTemplate that is not load-balanced, create a RestTemplate bean and inject it. To access the load-balanced RestTemplate, use the @LoadBalanced qualifier when you create your @Bean, as shown in the following example:\
-
-```
-@Configuration
-public class MyConfiguration {
-
-    @LoadBalanced
-    @Bean
-    RestTemplate loadBalanced() {
-        return new RestTemplate();
-    }
-
-    @Primary
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-}
-
-public class MyClass {
-    @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
-    @LoadBalanced
-    private RestTemplate loadBalanced;
-
-    public String doOtherStuff() {
-        return loadBalanced.getForObject("http://stores/stores", String.class);
-    }
-
-    public String doStuff() {
-        return restTemplate.getForObject("http://example.com", String.class);
-    }
-}
-```
-
->Notice the use of the @Primary annotation on the plain RestTemplate declaration in the preceding example to disambiguate the unqualified @Autowired injection.
-
->	If you see errors such as java.lang.IllegalArgumentException: Can not set org.springframework.web.client.RestTemplate field com.my.app.Foo.restTemplate to com.sun.proxy.$Proxy89, try injecting RestOperations or setting spring.aop.proxyTargetClass=true.
-
-### Spring WebFlux WebClient as a Load Balancer Client
-
-#### Spring WebFlux WebClient with Reactive Load Balancer
-
-WebClient can be configured to use the ReactiveLoadBalancer. If you add org.springframework.cloud:spring-cloud-loadbalancer to your project, ReactorLoadBalancerExchangeFilterFunction is auto-configured if spring-webflux is on the classpath. The following example shows how to configure a WebClient to use reactive load balancer under the hood:
-
-```
-public class MyClass {
-    @Autowired
-    private ReactorLoadBalancerExchangeFilterFunction lbFunction;
-
-    public Mono<String> doOtherStuff() {
-        return WebClient.builder().baseUrl("http://stores")
-            .filter(lbFunction)
-            .build()
-            .get()
-            .uri("/stores")
-            .retrieve()
-            .bodyToMono(String.class);
-    }
-}
-```
-
-The URI needs to use a virtual host name (that is, a service name, not a host name). The ReactorLoadBalancerClient is used to create a full physical address.
-
-#### Spring WebFlux WebClient with non-reactive Load Balancer Client
-
-If you you don’t have org.springframework.cloud:spring-cloud-loadbalancer in your project, but you do have spring-cloud-starter-netflix-ribbon, you can still use WebClient with LoadBalancerClient. LoadBalancerExchangeFilterFunction will be auto-configured if spring-webflux is on the classpath. Please note, however, that this is uses a non-reactive client under the hood. The following example shows how to configure a WebClient to use load balancer:
-
-```
-public class MyClass {
-    @Autowired
-    private LoadBalancerExchangeFilterFunction lbFunction;
-
-    public Mono<String> doOtherStuff() {
-        return WebClient.builder().baseUrl("http://stores")
-            .filter(lbFunction)
-            .build()
-            .get()
-            .uri("/stores")
-            .retrieve()
-            .bodyToMono(String.class);
-    }
-}
-```
-
-The URI needs to use a virtual host name (that is, a service name, not a host name). The LoadBalancerClient is used to create a full physical address.
-
-WARN: This approach is now deprecated. We suggest you use WebFlux with reactive Load-Balancer instead.
-
-#### Passing your own Load-Balancer Client configuration
-
-You can also use the @LoadBalancerClient annotation to pass your own load-balancer client configuration, passing the name of the load-balancer client and the configuration class, like so:
-
-```
-@Configuration
-@LoadBalancerClient(value = "stores", configuration = StoresLoadBalancerClientConfiguration.class)
-public class MyConfiguration {
-
-	@Bean
-	@LoadBalanced
-	public WebClient.Builder loadBalancedWebClientBuilder() {
-		return WebClient.builder();
-	}
-}
-```
-
-It is also possible to pass together multiple configurations (for more than one load-balancer client) via the @LoadBalancerClients annotation, as shown below:
-
-```
-@Configuration
-@LoadBalancerClients({@LoadBalancerClient(value = "stores", configuration = StoresLoadBalancerClientConfiguration.class), @LoadBalancerClient(value = "customers", configuration = CustomersLoadBalancerClientConfiguration.class)})
-public class MyConfiguration {
-
-	@Bean
-	@LoadBalanced
-	public WebClient.Builder loadBalancedWebClientBuilder() {
-		return WebClient.builder();
-	}
-}
-```
-
-### Ignore Network Interfaces
-
-Sometimes, it is useful to ignore certain named network interfaces so that they can be excluded from Service Discovery registration (for example, when running in a Docker container). A list of regular expressions can be set to cause the desired network interfaces to be ignored. The following configuration ignores the docker0 interface and all interfaces that start with veth:
-
-**application.yml**
-
-```
-spring:
-  cloud:
-    inetutils:
-      ignoredInterfaces:
-        - docker0
-        - veth.*
-```
-
-You can also force the use of only specified network addresses by using a list of regular expressions, as shown in the following example:
-
-**bootstrap.yml**
-
-```
-spring:
-  cloud:
-    inetutils:
-      preferredNetworks:
-        - 192.168
-        - 10.0
-```
-You can also force the use of only site-local addresses, as shown in the following example: .application.yml
-```
-spring:
-  cloud:
-    inetutils:
-      useOnlySiteLocalInterfaces: true
-```
-See Inet4Address.html.isSiteLocalAddress() for more details about what constitutes a site-local address.
-
-### HTTP Client Factories
-
-Spring Cloud Commons provides beans for creating both Apache HTTP clients (ApacheHttpClientFactory) and OK HTTP clients (OkHttpClientFactory). The OkHttpClientFactory bean is created only if the OK HTTP jar is on the classpath. In addition, Spring Cloud Commons provides beans for creating the connection managers used by both clients: ApacheHttpClientConnectionManagerFactory for the Apache HTTP client and OkHttpClientConnectionPoolFactory for the OK HTTP client. If you would like to customize how the HTTP clients are created in downstream projects, you can provide your own implementation of these beans. In addition, if you provide a bean of type HttpClientBuilder or OkHttpClient.Builder, the default factories use these builders as the basis for the builders returned to downstream projects. You can also disable the creation of these beans by setting spring.cloud.httpclientfactories.apache.enabled or spring.cloud.httpclientfactories.ok.enabled to false.
-
-### Enabled Features
-
-Spring Cloud Commons provides a /features actuator endpoint. This endpoint returns features available on the classpath and whether they are enabled. The information returned includes the feature type, name, version, and vendor.
-
-#### Feature types
-
-There are two types of 'features': abstract and named.
-
-Abstract features are features where an interface or abstract class is defined and that an implementation the creates, such as DiscoveryClient, LoadBalancerClient, or LockService. The abstract class or interface is used to find a bean of that type in the context. The version displayed is bean.getClass().getPackage().getImplementationVersion().
-
-Named features are features that do not have a particular class they implement, such as "Circuit Breaker", "API Gateway", "Spring Cloud Bus", and others. These features require a name and a bean type.
-
-#### Declaring features
-
-Any module can declare any number of HasFeature beans, as shown in the following examples:
-
-```
-@Bean
-public HasFeatures commonsFeatures() {
-  return HasFeatures.abstractFeatures(DiscoveryClient.class, LoadBalancerClient.class);
-}
-
-@Bean
-public HasFeatures consulFeatures() {
-  return HasFeatures.namedFeatures(
-    new NamedFeature("Spring Cloud Bus", ConsulBusAutoConfiguration.class),
-    new NamedFeature("Circuit Breaker", HystrixCommandAspect.class));
-}
-
-@Bean
-HasFeatures localFeatures() {
-  return HasFeatures.builder()
-      .abstractFeature(Foo.class)
-      .namedFeature(new NamedFeature("Bar Feature", Bar.class))
-      .abstractFeature(Baz.class)
-      .build();
-}
-```
-
-Each of these beans should go in an appropriately guarded @Configuration.
-
-### Spring Cloud Compatibility Verification
-
-Due to the fact that some users have problem with setting up Spring Cloud application, we’ve decided to add a compatibility verification mechanism. It will break if your current setup is not compatible with Spring Cloud requirements, together with a report, showing what exactly went wrong.
-
-At the moment we verify which version of Spring Boot is added to your classpath.
-
-Example of a report
-
-```
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Your project setup is incompatible with our requirements due to following reasons:
-
-- Spring Boot [2.1.0.RELEASE] is not compatible with this Spring Cloud release train
-
-
-Action:
-
-Consider applying the following actions:
-
-- Change Spring Boot version to one of the following versions [1.2.x, 1.3.x] .
-You can find the latest Spring Boot versions here [https://spring.io/projects/spring-boot#learn].
-If you want to learn more about the Spring Cloud Release train compatibility, you can visit this page [https://spring.io/projects/spring-cloud#overview] and check the [Release Trains] section.
-```
-
-In order to disable this feature, set spring.cloud.compatibility-verifier.enabled to false. If you want to override the compatible Spring Boot versions, just set the spring.cloud.compatibility-verifier.compatible-boot-versions property with a comma separated list of compatible Spring Boot versions.

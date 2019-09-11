@@ -196,16 +196,17 @@ HandlerExceptionResolver
 发布平台可以批量发布应用程序  
 优雅关闭，而不是粗暴关闭，尤其是底层被依赖的服务  
 
-
-
 ### 90 Spring cloud 的组成部分
 
-外围（客户端）应用 --> gateway--> 微服务 --> database / message brokers  
-微服务周围: config service / Service Registry / distributed tracing / 断路 board 
+整体数据流向: 外围（客户端）应用 --> gateway--> 微服务 --> database / message brokers  
+微服务周围: config service / Service Registry / distributed tracing / 断路 board  
+  即与服务管理相关的有 服务配置，服务注册，服务发现，服务中断（和降级），服务链路（追踪），服务限流
 
 ## 服务注册和发现
 
 ### 91 Euraka
+
+DiscoveryClient  
 
 ### 92 Loadbalancer
 
@@ -215,9 +216,9 @@ HandlerExceptionResolver
 
 ### 95 Zookeeper
 
-### Consul
+### Consul  
 
-### Nacos
+### Nacos  
 
 ### 定制 DiscoveryClient  
 
