@@ -45,7 +45,7 @@ final 和 双检锁
 
 ## 12 编写线程安全的对象
 
-略
+把数据和数据访问操作封装在一个对象中，从而实现对共享数据的统一管理。
 
 ## 13 总结 1~12
 
@@ -113,17 +113,44 @@ CAS 原理， CAS + 自旋， BAB
 
 ## 31 Guarded Suspension
 
+参见 15 异步转同步，只是一种写法的称呼。
+
 ## 32 Balking  
 
+某种程度上可以看做是 Guarded Suspension 的变种。没看懂，也不想看。  
+
 ## 33 Thread-Per-Message
+
+Java的线程是和操作系统一一对应的。  
+OpenJDK 有一个 Loom 项目，要实现Java 语言的轻量级线程，在项目中轻量级线程被称为 Fiber。  
 
 ## 34 Worker Thread 模式
 
 ## 35 两阶段终止模式
 
+阶段1: 发起终止命令，阶段2: 完成终止操作。  
+interrupt 可以打破休眠状态。  
+
 ## 36 生产者-消费者模式
 
+本章鸡肋
+- 生产者-消费者 可以支持异步，平衡两端速度差异  
+- 批量任务？
+- 分阶段提交  
+  参考 biz.worm.jdk.core.thread.Logger  
+  我不觉得，这和生产者消费者有什么关系  
+
 ## 37 答疑
+
+并发编程模式
+- 避免共享
+  immutable copy-on-write ThreadLocal
+- 分工模式
+  Thread - Per - Message 任务分发  
+  worker Thread  
+  生产消费模式  
+- 线程通信 模式
+  生产者消费者也属于这种模式，反之则不是  
 
 ## 38 案例分析 RateLimiter
 
