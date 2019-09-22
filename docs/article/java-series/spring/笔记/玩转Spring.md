@@ -80,15 +80,19 @@
 
 ### 小结
 
-## Spring MVC
+## Spring MVC 实践
 
 ### 39 Controller
 
 ### 40 上下文
 
+- 上下文做什么用  
+- 上下文接口  
+- 在上下文层次的情况下，到底应该如何使用 AOP  
+
 ### 41 请求处理机制
 
-没有讲细节，主要说了一下 doService 和 dispatch() 方法 
+没有讲细节，主要说了一下 doService() 和 dispatch() 方法 
 
 ### 42 如何处理定义的方法
 
@@ -131,11 +135,11 @@ ViewResolver
 主要是 Thymeleaf
 默认配置项  
 
-### 静态资源与缓存
+### 48 静态资源与缓存
 
 xxx.static-locations = classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/;classpath:/public/
 
-### 异常处理
+### 49 异常处理
 
 HandlerExceptionResolver
   - Simple
@@ -147,9 +151,11 @@ HandlerExceptionResolver
 @Controller / @RestController
 @ControllerAdvice / @RestControllerAdvice
 
-### Spring MVC 切入点
+### 50 Spring MVC 切入点
 
-@Interceptor  
+- @Interceptor  
+- ResponseBodyAdvice
+- AsyncHandlerInterceptor
 
 ### 项目小结
 

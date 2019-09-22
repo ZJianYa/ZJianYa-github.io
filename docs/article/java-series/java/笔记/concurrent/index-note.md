@@ -10,6 +10,13 @@ JDK 官方文档并没有详尽的，或者按照 JDK 中的类来讲述整个�
 因为这一部分强调了并发，那么数据结构和并发之间要做权衡，并发优先  
 最终的知识点都落在各个具体的文章中，这里只提供 逻辑梳理 、 TODO  
 
+## 资源
+
+https://docs.oracle.com/javase/tutorial/essential/index.html  
+https://www.baeldung.com/java-fork-join  
+
+https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247485701&idx=1&sn=471710ed79f15283edc0f341f17364ba&chksm=9bd0a49daca72d8bd4269f8980f412bbd5de0367e2bb9889694cedeefb9bbf8dace6165c6118&scene=27#wechat_redirect  HashMap? ConcurrentHashMap?  
+
 ## 目录
 
 ### 多线程
