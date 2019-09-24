@@ -4,35 +4,22 @@
 理解偏斜锁、自旋锁、轻量级锁、重量级锁等概念 ，理解锁的膨胀、降级可以参考 synchronized.md。  
 乐观锁不仅仅方式不仅包括 CAS，其实偏斜锁、轻量级锁在我开来都是乐观锁。  
 
+## 参考
+
+http://gee.cs.oswego.edu/dl/cpj/index.html  
+
 ## volatile
+
+## CAS 和原子类
 
 ## synchronize
 
-在 Java 5 以前，synchronized 是仅有的同步手段，在代码中， synchronized 可以用来修饰方法，也可以使用在特定的代码块儿上，本质上 synchronized 方法等同于把方法全部语句用 synchronized 块包起来。
-
-```{}
-11: astore_1
-12: monitorenter
-13: aload_0
-14: dup
-15: getfield  	#2              	// Field sharedState:I
-18: dup_x1
-…
-56: monitorexit
-```
-
-如果是静态代码，可以这么加锁
-
-```{}
-synchronized (ClassName.class) {}
-```
-
 ## lock
 
-所有的 Lock 都是基于 AQS 来实现了。AQS 和 Condition 各自维护了不同的队列，在使用 lock 和 condition 的时候，其实就是两个队列的互相移动。  
-如果我们想自定义一个同步器，可以实现AQS。它提供了获取共享锁和互斥锁的方式，都是基于对state操作而言的。  
+所有的 Lock 都是基于 AQS 来实现了。 AQS 和 Condition 各自维护了不同的队列，在使用 lock 和 condition 的时候，其实就是两个队列的互相移动。  
+如果我们想自定义一个同步器，可以实现 AQS 。它提供了获取共享锁和互斥锁的方式，都是基于对state操作而言的。  
 
-ReentranLock 这个是可重入的。其实要弄明白它为啥可重入的呢，咋实现的呢。其实它内部自定义了同步器Sync，这个又实现了AQS，同时又实现了AOS，而后者就提供了一种互斥锁持有的方式。其实就是每次获取锁的时候，看下当前维护的那个线程和当前请求的线程是否一样，一样就可重入了。
+ReentranLock 这个是可重入的。其实要弄明白它为啥可重入的呢，咋实现的呢。其实它内部自定义了同步器Sync，这个又实现了AQS，同时又实现了 AOS ，而后者就提供了一种互斥锁持有的方式。其实就是每次获取锁的时候，看下当前维护的那个线程和当前请求的线程是否一样，一样就可重入了。
 
 ## ReentrantLock
 

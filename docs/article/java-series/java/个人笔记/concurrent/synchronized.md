@@ -6,6 +6,14 @@
 
 synchronized 代码块是由一对儿 monitorenter/monitorexit 指令实现的，Monitor 对象是同步的基本实现[单元](https://docs.oracle.com/javase/specs/jls/se10/html/jls-8.html#d5e13622)。
 
+使用 monitorenter 和 monitorexit 指令实现，JVM 要保证每个 monitorenter 必须有对应的 monitorexit 与之配对。  
+锁存在 Java 对象头里。如果对象是数组类型,则虚拟机用 3 个 Word(字宽)存储对象头,如果对象是非数组类型,则用 2 字宽存储对象头。  
+在 32 位虚拟机中,一字宽等于四字节,即 32bit。  
+3个字宽分别存储：存储对象的 hashCode 或锁信息等; 存储到对象类型数据的指针； 数组的长度(如果当前对象是数组)。  
+
+Java SE1.6 里锁一共有四种状态,无锁状态,偏向锁状态,轻量级锁状态和重量级锁状态,它会 随着竞争情况逐渐升级。  
+锁可以升级但不能降级,意味着偏向锁升级成轻量级锁后不能降级成偏向锁，目的是为了 高获得锁和释放锁的效率。 
+
 在 Java 6 之前，Monitor 的实现完全是依靠操作系统内部的互斥锁，因为需要进行用户态到内核态的切换，所以同步操作是一个无差别的重量级操作。
 
 现代的（Oracle）JDK 中，JVM 对此进行了大刀阔斧地改进，提供了三种不同的 Monitor 实现，也就是常说的三种不同的锁：偏斜锁（Biased Locking）、轻量级锁和重量级锁，大大改进了其性能。

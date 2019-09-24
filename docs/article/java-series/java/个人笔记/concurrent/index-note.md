@@ -78,14 +78,15 @@ Executors 则提供各种各样的 ExecutorService。
 
 ## 目录1
 
-### sycnronized
-
 ### lock 
 
-lock 和 condition  
-http://gee.cs.oswego.edu/dl/cpj/index.html  
 一方面是借助了 happen-before 来保证了临界区的互斥和同步, 通过 unsafe 提供的一些能力，比如 park 方法来实现等待  
 
+#### sycnronized
+
+#### volatile
+
+#### cas 和原子类
 
 ## 目录
 
@@ -112,7 +113,11 @@ http://gee.cs.oswego.edu/dl/cpj/index.html
   condition 是怎么回事
 * CAS vs 管程 vs synchronized  
   CAS 的版本号究竟是如何控制的  
-  管程究竟是如何实现的  
+* 管程和信号量  
+  https://en.wikipedia.org/wiki/Reference_monitor  
+  https://www.jianshu.com/p/32e1361817f0  管程  
+  信号量和管程的区别是什么？  
+  管程可以暂时释放锁，而信号量不可以释放锁  
 * happen-before 的几个规则  
 * 方法可以被中断吗？如何防止被中断，或者什么情况下不能被中断  
   这可能涉及到 CPU 乱序执行的规则  
