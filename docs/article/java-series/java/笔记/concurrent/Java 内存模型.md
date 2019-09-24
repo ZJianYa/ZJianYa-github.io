@@ -15,7 +15,7 @@ CPU 缓存中和主存可能出现不一致。
 `happens-before` 本质上是要消除缓存引起脏读，可以理解为前面的操作结果相对于后面的读操作必须可见，即并没有要消除 CPU 乱序的意思。  
 如前所述，**通过保证可见性，进而实现了多线程下程序执行的有序性**（这是我自己的表达，要权威描述还是看官方文档吧）。  
 
-#### happens-before
+### happens-before
 
 happens-before 里面有4条很重要的规则：
 
@@ -29,7 +29,8 @@ happens-before 里面有4条很重要的规则：
   对一个 volatile 域的写， happen-before 于其后任意对 volatile 域的读。  
 4. 传递性  
   指如果 A Happens-Before B，且 B Happens-Before C，那么 A Happens-Before C。  
-  特别强调的是即便是在多线程中，也保证这个规则。  
+
+特别强调的是即便是在多线程中，也保证这个规则。特别是对于共享变量的 happen-before 规则，直接跨线程的。  
 
 还有 3 条和线程生命周期/对象生命周期相关的规则：
 

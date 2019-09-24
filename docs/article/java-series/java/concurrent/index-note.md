@@ -6,10 +6,20 @@ ExecutorService 接口则进一步扩充了功能，增加了 shoutdown ... subm
 ThreadPoolExecutor 是 ExecutorService 的一个重要实现类。  
 Executors 则提供各种各样的 ExecutorService。  
 
+lock 和 condition  
+http://gee.cs.oswego.edu/dl/cpj/index.html  
+我们都知道
+
+核心是 lock{lock,release} condition{wait,notify}  
+如何去阅读源码，比如并发模块的源码。  
+1. 要把"各个朋友"认识一下，各自都干啥
+2. 这些朋友之间都是什么关系，亲疏远近、继承组合的关系要搞清楚，是怎么协调配合的。
+
 ## E-R
 
 - lock  
   - java.util.concurrent.locks.ReentrantLock  
+    ReentrantLock 本身只是 lock ，使用的 Sync 提供了 Condition 。  
     - `java.util.concurrent.ConcurrentHashMap.Segment<K, V>`  
     - `org.springframework.util.ConcurrentReferenceHashMap.Segment`  
   - java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock  
@@ -20,6 +30,7 @@ Executors 则提供各种各样的 ExecutorService。
 - java.util.concurrent.locks.AbstractOwnableSynchronizer
   - java.util.concurrent.locks.AbstractQueuedLongSynchronizer
   - java.util.concurrent.locks.AbstractQueuedSynchronizer
+    其中包含了 Condition ，本身又是 Sync
     - java.util.concurrent.CountDownLatch.Sync  
     - java.util.concurrent.locks.ReentrantLock.Sync
       - java.util.concurrent.locks.ReentrantLock.FairSync
@@ -45,5 +56,7 @@ Executors 则提供各种各样的 ExecutorService。
   - `java.util.concurrent.RunnableFuture<V>`  
     - `java.util.concurrent.FutureTask<V>`  
       - `javafx.concurrent.Task<V>`  
+
+
 
 ## 
