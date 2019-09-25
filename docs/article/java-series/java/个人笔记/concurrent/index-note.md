@@ -76,11 +76,15 @@ Executors 则提供各种各样的 ExecutorService。
     - `java.util.concurrent.FutureTask<V>`  
       - `javafx.concurrent.Task<V>`  
 
-## 目录1
+## 目录
+
+### 多线程起源
+
+略
 
 ### lock 
 
-一方面是借助了 happen-before 来保证了临界区的互斥和同步, 通过 unsafe 提供的一些能力，比如 park 方法来实现等待  
+一方面是借助了 happen-before 来保证了临界区的互斥和同步, 通过 unsafe 提供的一些能力，比如 park 方法来实现等待？  
 
 #### sycnronized
 
@@ -88,22 +92,8 @@ Executors 则提供各种各样的 ExecutorService。
 
 #### cas 和原子类
 
-## 目录
+#### lock condition
 
-### 多线程
-
-为了并行执行多任务，比如基本的 web 容器内部都是用了多线程  
-背景 / 用户内核线程 / 线程生命周期 / 性能指标：吞吐量和延迟  
-
-### 线程安全
-
-#### 底层支撑（线程安全的）
-
-#### Java 内存模型
-
-同步，通信
-
-#### Java 线程安全实现
 
 
 ## TODO
@@ -127,3 +117,7 @@ Executors 则提供各种各样的 ExecutorService。
 * AQS是什么  
   http://ifeve.com/java-special-troops-aqs/  
 
+
+https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&mid=2247486871&idx=1&sn=df2adfad945bd34d27dee557537a0782&chksm=ebf6d5e8dc815cfee8b282b31580ba8504f76b052f3ac9431b26f4f7e057a0cff5f57dfbead6&scene=27#wechat_redirect 关于锁，这里解释的不错。
+
+https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650121186&idx=1&sn=248d37be27d3bbeb103464b2a96a0ae4&chksm=f36bbec3c41c37d59277ac8539a616b65ec44637f341325056e98323e8780e09c6e4f7cc7a85&scene=21#wechat_redirect 多线程和锁优化

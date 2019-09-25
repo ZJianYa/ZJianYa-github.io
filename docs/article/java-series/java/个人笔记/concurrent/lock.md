@@ -14,7 +14,7 @@ http://gee.cs.oswego.edu/dl/cpj/index.html
 
 ## synchronize
 
-## lock
+## lock condition
 
 所有的 Lock 都是基于 AQS 来实现了。 AQS 和 Condition 各自维护了不同的队列，在使用 lock 和 condition 的时候，其实就是两个队列的互相移动。  
 如果我们想自定义一个同步器，可以实现 AQS 。它提供了获取共享锁和互斥锁的方式，都是基于对state操作而言的。  
@@ -116,3 +116,18 @@ private void enqueue(E e) {
 ```
 
 通过 signal/await 的组合，完成了条件判断和通知等待线程，非常顺畅就完成了状态流转。注意，signal 和 await 成对调用非常重要，不然假设只有 await 动作，线程会一直等待直到被打断（interrupt）。
+
+## 死锁
+
+- 死锁
+  - 原因  
+    线程互斥，占有且不释放，不可抢占，循环等待
+  - 解决方法
+   - 事前  
+     设置良好的通信、协调机制  
+     - 等待超时  
+     - 发现条件不满足，自动退让  
+     - 支持中断响应  
+   - 事中  
+     - 检测和kill 线程  
+   - 事后 

@@ -37,3 +37,8 @@
 
 #### 分库分表  
 
+## TODO
+
+https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing  线程池配置  
+https://www.cnblogs.com/Wcy100/p/5376399.html  order by 语句对 null 字段的排序  
+MySQL 分页优化， MySQL 一对多的分页查询  
