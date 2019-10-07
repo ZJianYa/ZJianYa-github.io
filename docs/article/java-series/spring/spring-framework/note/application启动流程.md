@@ -1,5 +1,56 @@
 
-从 run 方法说起
+## 概念和分工
+
+- BeanFactory
+  - HierarchicalBeanFactory
+    - ConfigurableBeanFactory
+      - ConfigurableListableBeanFactory
+        - DefaultListableBeanFactory
+    - ApplicationContext  
+      - ConfigurableApplicationContext
+        - GenericApplicationContext  
+          - AnnotationConfigApplicationContext
+
+### BeanFactory 相关
+
+* BeanFactory 规定了Bean的管理接口  
+* DefaultListableBeanFactory 把很多信息存在了自己的属性中，他自己也实现了注册功能  
+   *  `autowireCandidateResolver : AutowireCandidateResolver`  
+   *  `resolvableDependencies : Map<Class<?>, Object>`  
+   *  `beanDefinitionMap : Map<String, BeanDefinition>`  
+   *  `allBeanNamesByType : Map<Class<?>, String[]>`  
+   *  `singletonBeanNamesByType : Map<Class<?>, String[]>`  
+   *  `beanDefinitionNames : List<String>`  
+   *  `manualSingletonNames : Set<String>`  
+
+* Reader 读取文件  
+* BeanDefinition  
+  IoC 容器想要管理各个业务对象以及它们之间的依赖关系，需要通过某种途径来记录和管理这些信息。  
+  BeanDefinition 对象就承担了这个责任：容器中的每一个bean都会有一个对应的BeanDefinition实例，该实例负责保存bean对象的所有必要信息，包括bean对象的class类型、是否是抽象类、构造方法和参数、其它属性等等。  
+* BeanDefinitionRegistry 规定了注册接口  
+  * registerBeanDefinition(String, BeanDefinition)  
+  * removeBeanDefinition(String)  
+  * getBeanDefinition(String)  
+  * containsBeanDefinition(String)  
+  * getBeanDefinitionNames()  
+  * getBeanDefinitionCount()  
+  * isBeanNameInUse(String)  
+
+
+### ApplicationContext 相关
+
+* GenericApplicationContext  
+  * GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry  
+  * GenericApplicationContext 内部包含了一个 DefaultListableBeanFactory  
+
+更多 ApplicationContext 可以参考截图
+
+![ClassPathXxxContext](https://github.com/ZJianYa/public-imgs/blob/master/spring/spring-beans/application-context-hierarchy.png?raw=true?raw=true)
+
+![ClassPathXxxContext](https://github.com/ZJianYa/public-imgs/blob/master/spring/spring-beans/default-context-hierarchy.png?raw=true?raw=true)
+
+## run 方法的整个调用栈
+
 ```
 	public ConfigurableApplicationContext run(String... args) {
 		StopWatch stopWatch = new StopWatch();
@@ -18,7 +69,7 @@
 					applicationArguments);
 			configureIgnoreBeanInfo(environment);
 			Banner printedBanner = printBanner(environment);
-			// ③ 创建上下文
+			// ③ 创建上下文,在基础的 
 			context = createApplicationContext();
 			exceptionReporters = getSpringFactoriesInstances(
 					SpringBootExceptionReporter.class,
@@ -52,51 +103,6 @@
 		return context;
 	}
 ```
-
-## 概念和分工
-
-* Reader 读取文件
-* BeanDefinition  
-  IoC容器想要管理各个业务对象以及它们之间的依赖关系，需要通过某种途径来记录和管理这些信息。  
-  BeanDefinition对象就承担了这个责任：容器中的每一个bean都会有一个对应的BeanDefinition实例，该实例负责保存bean对象的所有必要信息，包括bean对象的class类型、是否是抽象类、构造方法和参数、其它属性等等。  
-* BeanDefinitionRegistry 规定了注册接口  
-  * registerBeanDefinition(String, BeanDefinition)  
-  * removeBeanDefinition(String)  
-  * getBeanDefinition(String)  
-  * containsBeanDefinition(String)  
-  * getBeanDefinitionNames()  
-  * getBeanDefinitionCount()  
-  * isBeanNameInUse(String)  
-* BeanFactory 规定了Bean的管理接口  
-  * ApplicationContext 接口集成了环境接口，BeanFactory 接口 等其他接口  
-    ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,  
-		MessageSource, ApplicationEventPublisher, ResourcePatternResolver    
-  * GenericApplicationContext 类间接继承了 ApplicationContext，还实现了 BeanDefinitionRegistry  
-  * GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry  
-* DefaultListableBeanFactory 把很多信息存在了自己的属性中，他自己也实现了注册功能  
-   *  autowireCandidateResolver : AutowireCandidateResolver  
-   *  resolvableDependencies : Map<Class<?>, Object>  
-   *  beanDefinitionMap : Map<String, BeanDefinition>  
-   *  allBeanNamesByType : Map<Class<?>, String[]>  
-   *  singletonBeanNamesByType : Map<Class<?>, String[]>  
-   *  beanDefinitionNames : List<String>  
-   *  manualSingletonNames : Set<String>  
-
-下面是 ApplicationContext 和 DefaultListableBeanFactory 的定义
-```{}
-public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
-  MessageSource, ApplicationEventPublisher, ResourcePatternResolver {
-}
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
-  implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
-  }
-```
-
-更多 ApplicationContext 可以参考截图
-
-![ClassPathXxxContext](https://github.com/ZJianYa/public-imgs/blob/master/spring/spring-beans/application-context-hierarchy.png?raw=true?raw=true)
-
-![ClassPathXxxContext](https://github.com/ZJianYa/public-imgs/blob/master/spring/spring-beans/default-context-hierarchy.png?raw=true?raw=true)
 
 ## 加载（CMD)过程和自动加载
 
@@ -161,7 +167,7 @@ BeanPostProcessor
   .postProcessAfterInitialization(Object, String)
 ```
 
-bean的整个生命周期参考下图：
+bean 的整个生命周期参考下图：
 
 ![图示](https://mmbiz.qpic.cn/mmbiz_png/b0eIqZY2SUBlaTKh5cSTw5CicsmEUlW8p2oedDajvouFasiaRdJVfNRasXrZMQ5AXWgQ5OGbYLN5nG9LoYick0zrw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)  
 备注：图摘自 Spring揭秘。  

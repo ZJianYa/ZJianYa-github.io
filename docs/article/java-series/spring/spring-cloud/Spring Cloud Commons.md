@@ -1,23 +1,31 @@
 
 ## Spring Cloud Commons: Common Abstractions
 
-Patterns such as service discovery, load balancing, and circuit breakers lend themselves to a common abstraction layer that can be consumed by all Spring Cloud clients, independent of the implementation (for example, discovery with Eureka or Consul).
+Patterns such as service discovery, load balancing, and circuit breakers lend themselves to a common abstraction layer that can be consumed by all Spring Cloud clients, independent of the implementation (for example, discovery with Eureka or Consul).  
+服务发现，负载平衡和电路断路器等模式将它们带到一个通用的抽象层，可以由所有Spring Cloud客户端使用，而与实现无关（例如，使用Eureka或Consul进行发现）。  
 
 ### @EnableDiscoveryClient
 
-Spring Cloud Commons provides the @EnableDiscoveryClient annotation. This looks for implementations of the DiscoveryClient interface with META-INF/spring.factories. Implementations of the Discovery Client add a configuration class to spring.factories under the org.springframework.cloud.client.discovery.EnableDiscoveryClient key. Examples of DiscoveryClient implementations include Spring Cloud Netflix Eureka, Spring Cloud Consul Discovery, and Spring Cloud Zookeeper Discovery.
+Spring Cloud Commons provides the @EnableDiscoveryClient annotation. This looks for implementations of the DiscoveryClient interface with META-INF/spring.factories. Implementations of the Discovery Client add a configuration class to spring.factories under the org.springframework.cloud.client.discovery.EnableDiscoveryClient key. Examples of DiscoveryClient implementations include Spring Cloud Netflix Eureka, Spring Cloud Consul Discovery, and Spring Cloud Zookeeper Discovery.  
+Spring Cloud Commons提供了@EnableDiscoveryClient注释。这将查找具有的DiscoveryClient接口的实现META-INF/spring.factories。Discovery Client的实现将一个配置类添加到 spring.factories该org.springframework.cloud.client.discovery.EnableDiscoveryClient 键下。 DiscoveryClient 实现示例包括 [Spring Cloud Netflix Eureka](https://cloud.spring.io/spring-cloud-netflix/) ，[Spring Cloud Consul Discovery](https://cloud.spring.io/spring-cloud-consul/)和Spring Cloud Zookeeper Discovery。
 
-By default, implementations of DiscoveryClient auto-register the local Spring Boot server with the remote discovery server. This behavior can be disabled by setting autoRegister=false in @EnableDiscoveryClient.
+By default, implementations of DiscoveryClient auto-register the local Spring Boot server with the remote discovery server. This behavior can be disabled by setting autoRegister=false in @EnableDiscoveryClient.  
+默认情况下，DiscoveryClient 将本地 Spring Boot 服务器自动注册到远程发现服务器的实现。可以通过 autoRegister=false 在中设置禁用此行为 @EnableDiscoveryClient。
 
 >@EnableDiscoveryClient is no longer required. You can put a DiscoveryClient implementation on the classpath to cause the Spring Boot application to register with the service discovery server.
+>不再需要 @EnableDiscoveryClient 。您可以将 DiscoveryClient 实现放在类路径上，以使 Spring Boot 应用程序向服务发现服务器注册。
 
 ### Health Indicator
 
-Commons creates a Spring Boot HealthIndicator that DiscoveryClient implementations can participate in by implementing DiscoveryHealthIndicator. To disable the composite HealthIndicator, set spring.cloud.discovery.client.composite-indicator.enabled=false. A generic HealthIndicator based on DiscoveryClient is auto-configured (DiscoveryClientHealthIndicator). To disable it, set spring.cloud.discovery.client.health-indicator.enabled=false. To disable the description field of the DiscoveryClientHealthIndicator, set spring.cloud.discovery.client.health-indicator.include-description=false. Otherwise, it can bubble up as the description of the rolled up HealthIndicator.
+Commons creates a Spring Boot HealthIndicator that DiscoveryClient implementations can participate in by implementing DiscoveryHealthIndicator. To disable the composite HealthIndicator, set spring.cloud.discovery.client.composite-indicator.enabled=false. A generic HealthIndicator based on DiscoveryClient is auto-configured (DiscoveryClientHealthIndicator). To disable it, set spring.cloud.discovery.client.health-indicator.enabled=false. To disable the description field of the DiscoveryClientHealthIndicator, set spring.cloud.discovery.client.health-indicator.include-description=false. Otherwise, it can bubble up as the description of the rolled up HealthIndicator.  
+Commons 创建了一个 Spring Boot HealthIndicator，DiscoveryClient 实现可以通过实现来参与 DiscoveryHealthIndicator 。要禁用复合 HealthIndicator ，请设置spring.cloud.discovery.client.composite-indicator.enabled=false 。自动配置了通用HealthIndicator依据。要禁用它，请设置。要禁用的描述字段，请设置。否则，它可以冒泡作为的卷起。  
+DiscoveryClientDiscoveryClientHealthIndicatorspring.cloud.discovery.client.health-indicator.enabled=falseDiscoveryClientHealthIndicatorspring.cloud.discovery.client.health-indicator.include-description=falsedescriptionHealthIndicator
 
 ### Ordering DiscoveryClient instances
 
-DiscoveryClient interface extends Ordered. This is useful when using multiple discovery clients, as it allows you to define the order of the returned discovery clients, similar to how you can order the beans loaded by a Spring application. By default, the order of any DiscoveryClient is set to 0. If you want to set a different order for your custom DiscoveryClient implementations, you just need to override the getOrder() method so that it returns the value that is suitable for your setup. Apart from this, you can use properties to set the order of the DiscoveryClient implementations provided by Spring Cloud, among others ConsulDiscoveryClient, EurekaDiscoveryClient and ZookeeperDiscoveryClient. In order to do it, you just need to set the spring.cloud.{clientIdentifier}.discovery.order (or eureka.client.order for Eureka) property to the desired value.
+DiscoveryClient interface extends Ordered. This is useful when using multiple discovery clients, as it allows you to define the order of the returned discovery clients, similar to how you can order the beans loaded by a Spring application. By default, the order of any DiscoveryClient is set to 0. If you want to set a different order for your custom DiscoveryClient implementations, you just need to override the getOrder() method so that it returns the value that is suitable for your setup. Apart from this, you can use properties to set the order of the DiscoveryClient implementations provided by Spring Cloud, among others ConsulDiscoveryClient, EurekaDiscoveryClient and ZookeeperDiscoveryClient. In order to do it, you just need to set the spring.cloud.{clientIdentifier}.discovery.order (or eureka.client.order for Eureka) property to the desired value.  
+
+DiscoveryClient 接口扩展 Ordered。当使用多个发现客户端时，这很有用，因为它允许您定义返回的发现客户端的顺序，类似于如何订购Spring应用程序加载的bean。默认情况下，any的顺序DiscoveryClient设置为 0。如果要为自定义DiscoveryClient实现设置不同的顺序，则只需要重写该getOrder()方法，以便它返回适合您的设置的值。除了这个，你可以使用属性来设置的顺序DiscoveryClient 由Spring提供的云计算等等的实现ConsulDiscoveryClient，EurekaDiscoveryClient和 ZookeeperDiscoveryClient。为此，您只需将 spring.cloud.{clientIdentifier}.discovery.order（或eureka.client.orderEureka）属性设置为所需值。
 
 ### ServiceRegistry
 

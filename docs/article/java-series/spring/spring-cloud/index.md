@@ -12,16 +12,13 @@ https://cloud.spring.io/spring-cloud-static/Greenwich.SR1/multi/multi_spring-clo
 
 ### Cloud Native Applications
 
-#### Spring Cloud Context: Application Context Services
-
-#### Spring Cloud Commons: Common Abstractions
+#### 2. Spring Cloud Context: Application Context Services
+#### 3. Spring Cloud Commons: Common Abstractions
 
 ### Spring Cloud Config
 
-#### Quick Start
-
-#### Spring Cloud Config Server
-
+#### 4. Quick Start
+#### 5. Spring Cloud Config Server
 #### 6. Serving Alternative Formats
 #### 7. Serving Plain Text
 #### 8. Embedding the Config Server
@@ -58,6 +55,9 @@ https://cloud.spring.io/spring-cloud-static/Greenwich.SR1/multi/multi_spring-clo
 ### XVI. Spring Cloud Function
 ### XVII. Spring Cloud Kubernetes
 ### XVIII. Spring Cloud GCP
+146. Introduction
+147. Dependency Management
+148. Getting started
 ### XIX. Appendix: Compendium of Configuration Properties
 
 ## 资源  
