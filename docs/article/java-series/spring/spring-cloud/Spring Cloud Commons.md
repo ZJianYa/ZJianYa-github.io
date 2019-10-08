@@ -25,11 +25,11 @@ DiscoveryClientDiscoveryClientHealthIndicatorspring.cloud.discovery.client.healt
 
 DiscoveryClient interface extends Ordered. This is useful when using multiple discovery clients, as it allows you to define the order of the returned discovery clients, similar to how you can order the beans loaded by a Spring application. By default, the order of any DiscoveryClient is set to 0. If you want to set a different order for your custom DiscoveryClient implementations, you just need to override the getOrder() method so that it returns the value that is suitable for your setup. Apart from this, you can use properties to set the order of the DiscoveryClient implementations provided by Spring Cloud, among others ConsulDiscoveryClient, EurekaDiscoveryClient and ZookeeperDiscoveryClient. In order to do it, you just need to set the spring.cloud.{clientIdentifier}.discovery.order (or eureka.client.order for Eureka) property to the desired value.  
 
-DiscoveryClient 接口扩展 Ordered。当使用多个发现客户端时，这很有用，因为它允许您定义返回的发现客户端的顺序，类似于如何订购Spring应用程序加载的bean。默认情况下，any的顺序DiscoveryClient设置为 0。如果要为自定义DiscoveryClient实现设置不同的顺序，则只需要重写该getOrder()方法，以便它返回适合您的设置的值。除了这个，你可以使用属性来设置的顺序DiscoveryClient 由Spring提供的云计算等等的实现ConsulDiscoveryClient，EurekaDiscoveryClient和 ZookeeperDiscoveryClient。为此，您只需将 spring.cloud.{clientIdentifier}.discovery.order（或eureka.client.orderEureka）属性设置为所需值。
+DiscoveryClient 接口扩展 Ordered。当使用多个发现客户端时，这很有用，因为它允许您定义返回的发现客户端的顺序，类似于如何订购Spring应用程序加载的bean。默认情况下，any的顺序 DiscoveryClient 设置为 0。如果要为自定义 DiscoveryClient 实现设置不同的顺序，则只需要重写该getOrder()方法，以便它返回适合您的设置的值。除了这个，你可以使用属性来设置的顺序 DiscoveryClient 由Spring提供的云计算等等的实现 ConsulDiscoveryClient ， EurekaDiscoveryClient 和 ZookeeperDiscoveryClient 。为此，您只需将 spring.cloud.{clientIdentifier}.discovery.order（或eureka.client.orderEureka）属性设置为所需值。
 
 ### ServiceRegistry
 
-Commons now provides a ServiceRegistry interface that provides methods such as register(Registration) and deregister(Registration), which let you provide custom registered services. Registration is a marker interface.
+Commons now provides a ServiceRegistry interface that provides methods such as register(Registration) and deregister(Registration), which let you provide custom registered services. Registration is a marker interface.  
 
 The following example shows the ServiceRegistry in use:
 
