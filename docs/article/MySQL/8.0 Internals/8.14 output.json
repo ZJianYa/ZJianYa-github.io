@@ -1,0 +1,262 @@
+{
+  "steps": [{
+      "join_preparation": {
+        "select#": 1,
+        "steps": [{
+            "expanded_query": "/* select#1 */ select sum(`alias2`.`col_varchar_nokey`) AS `SUM(alias2.col_varchar_nokey)`,`alias2`.`pk` AS `field2` from (`t1` `alias1` straight_join `t2` `alias2` on((`alias2`.`pk` = `alias1`.`col_int_key`))) where `alias1`.`pk` group by `field2` order by `alias1`.`col_int_key`,`alias2`.`pk` limit 0,5000"
+          },
+          {
+            "transformations_to_nested_joins": {
+              "transformations": [
+                "JOIN_condition_to_WHERE",
+                "parenthesis_removal"
+              ] /* transformations */ ,
+              "expanded_query": "/* select#1 */ select sum(`alias2`.`col_varchar_nokey`) AS `SUM(alias2.col_varchar_nokey)`,`alias2`.`pk` AS `field2` from `t1` `alias1` straight_join `t2` `alias2` where (`alias1`.`pk` and (`alias2`.`pk` = `alias1`.`col_int_key`)) group by `field2` order by `alias1`.`col_int_key`,`alias2`.`pk` limit 0,5000"
+            } /* transformations_to_nested_joins */
+          },
+          {
+            "functional_dependencies_of_GROUP_columns": {
+              "all_columns_of_table_map_bits": [
+                1
+              ] /* all_columns_of_table_map_bits */ ,
+              "columns": [
+                "mytest.alias2.pk",
+                "mytest.alias1.col_int_key"
+              ] /* columns */
+            } /* functional_dependencies_of_GROUP_columns */
+          }
+        ] /* steps */
+      } /* join_preparation */
+    },
+    {
+      "join_optimization": {
+        "select#": 1,
+        "steps": [{
+            "condition_processing": {
+              "condition": "WHERE",
+              "original_condition": "(`alias1`.`pk` and (`alias2`.`pk` = `alias1`.`col_int_key`))",
+              "steps": [{
+                  "transformation": "equality_propagation",
+                  "resulting_condition": "(`alias1`.`pk` and multiple equal(`alias2`.`pk`, `alias1`.`col_int_key`))"
+                },
+                {
+                  "transformation": "constant_propagation",
+                  "resulting_condition": "(`alias1`.`pk` and multiple equal(`alias2`.`pk`, `alias1`.`col_int_key`))"
+                },
+                {
+                  "transformation": "trivial_condition_removal",
+                  "resulting_condition": "(`alias1`.`pk` and multiple equal(`alias2`.`pk`, `alias1`.`col_int_key`))"
+                }
+              ] /* steps */
+            } /* condition_processing */
+          },
+          {
+            "substitute_generated_columns": {} /* substitute_generated_columns */
+          },
+          {
+            "table_dependencies": [{
+                "table": "`t1` `alias1`",
+                "row_may_be_null": false,
+                "map_bit": 0,
+                "depends_on_map_bits": [] /* depends_on_map_bits */
+              },
+              {
+                "table": "`t2` `alias2`",
+                "row_may_be_null": false,
+                "map_bit": 1,
+                "depends_on_map_bits": [
+                  0
+                ] /* depends_on_map_bits */
+              }
+            ] /* table_dependencies */
+          },
+          {
+            "ref_optimizer_key_uses": [{
+              "table": "`t2` `alias2`",
+              "field": "pk",
+              "equals": "`alias1`.`col_int_key`",
+              "null_rejecting": true
+            }] /* ref_optimizer_key_uses */
+          },
+          {
+            "rows_estimation": [{
+                "table": "`t1` `alias1`",
+                "table_scan": {
+                  "rows": 20,
+                  "cost": 1
+                } /* table_scan */
+              },
+              {
+                "table": "`t2` `alias2`",
+                "const_keys_added": {
+                  "keys": [
+                    "PRIMARY"
+                  ] /* keys */ ,
+                  "cause": "group_by"
+                } /* const_keys_added */ ,
+                "range_analysis": {
+                  "table_scan": {
+                    "rows": 100,
+                    "cost": 23.1
+                  } /* table_scan */ ,
+                  "potential_range_indexes": [{
+                    "index": "PRIMARY",
+                    "usable": true,
+                    "key_parts": [
+                      "pk"
+                    ] /* key_parts */
+                  }] /* potential_range_indexes */ ,
+                  "setup_range_conditions": [] /* setup_range_conditions */ ,
+                  "group_index_range": {
+                    "chosen": false,
+                    "cause": "not_single_table"
+                  } /* group_index_range */
+                } /* range_analysis */
+              }
+            ] /* rows_estimation */
+          },
+          {
+            "considered_execution_plans": [{
+              "plan_prefix": [] /* plan_prefix */ ,
+              "table": "`t1` `alias1`",
+              "best_access_path": {
+                "considered_access_paths": [{
+                  "rows_to_scan": 20,
+                  "access_type": "scan",
+                  "resulting_rows": 18,
+                  "cost": 5,
+                  "chosen": true
+                }] /* considered_access_paths */
+              } /* best_access_path */ ,
+              "condition_filtering_pct": 100,
+              "rows_for_plan": 18,
+              "cost_for_plan": 5,
+              "rest_of_plan": [{
+                "plan_prefix": [
+                  "`t1` `alias1`"
+                ] /* plan_prefix */ ,
+                "table": "`t2` `alias2`",
+                "best_access_path": {
+                  "considered_access_paths": [{
+                      "access_type": "eq_ref",
+                      "index": "PRIMARY",
+                      "rows": 1,
+                      "cost": 21.6,
+                      "chosen": true,
+                      "cause": "clustered_pk_chosen_by_heuristics"
+                    },
+                    {
+                      "rows_to_scan": 100,
+                      "access_type": "scan",
+                      "using_join_cache": true,
+                      "buffers_needed": 1,
+                      "resulting_rows": 100,
+                      "cost": 361,
+                      "chosen": false
+                    }
+                  ] /* considered_access_paths */
+                } /* best_access_path */ ,
+                "condition_filtering_pct": 100,
+                "rows_for_plan": 18,
+                "cost_for_plan": 26.6,
+                "chosen": true
+              }] /* rest_of_plan */
+            }] /* considered_execution_plans */
+          },
+          {
+            "attaching_conditions_to_tables": {
+              "original_condition": "((`alias2`.`pk` = `alias1`.`col_int_key`) and `alias1`.`pk`)",
+              "attached_conditions_computation": [] /* attached_conditions_computation */ ,
+              "attached_conditions_summary": [{
+                  "table": "`t1` `alias1`",
+                  "attached": "(`alias1`.`pk` and (`alias1`.`col_int_key` is not null))"
+                },
+                {
+                  "table": "`t2` `alias2`",
+                  "attached": null
+                }
+              ] /* attached_conditions_summary */
+            } /* attaching_conditions_to_tables */
+          },
+          {
+            "clause_processing": {
+              "clause": "ORDER BY",
+              "original_clause": "`alias1`.`col_int_key`,`alias2`.`pk`",
+              "items": [{
+                  "item": "`alias1`.`col_int_key`"
+                },
+                {
+                  "item": "`alias2`.`pk`",
+                  "eq_ref_to_preceding_items": true
+                }
+              ] /* items */ ,
+              "resulting_clause_is_simple": true,
+              "resulting_clause": "`alias1`.`col_int_key`"
+            } /* clause_processing */
+          },
+          {
+            "clause_processing": {
+              "clause": "GROUP BY",
+              "original_clause": "`field2`",
+              "items": [{
+                "item": "`alias2`.`pk`"
+              }] /* items */ ,
+              "resulting_clause_is_simple": false,
+              "resulting_clause": "`field2`"
+            } /* clause_processing */
+          },
+          {
+            "refine_plan": [{
+                "table": "`t1` `alias1`"
+              },
+              {
+                "table": "`t2` `alias2`"
+              }
+            ] /* refine_plan */
+          }
+        ] /* steps */
+      } /* join_optimization */
+    },
+    {
+      "join_execution": {
+        "select#": 1,
+        "steps": [{
+            "creating_tmp_table": {
+              "tmp_table_info": {
+                "table": "intermediate_tmp_table",
+                "row_length": 18,
+                "key_length": 4,
+                "unique_constraint": false,
+                "location": "memory (heap)",
+                "row_limit_estimate": 932067
+              } /* tmp_table_info */
+            } /* creating_tmp_table */
+          },
+          {
+            "filesort_information": [{
+              "direction": "asc",
+              "table": "intermediate_tmp_table",
+              "field": "col_int_key"
+            }] /* filesort_information */ ,
+            "filesort_priority_queue_optimization": {
+              "limit": 5000,
+              "rows_estimate": 18,
+              "row_size": 13,
+              "memory_available": 262144,
+              "chosen": false,
+              "cause": "quicksort_is_cheaper"
+            } /* filesort_priority_queue_optimization */ ,
+            "filesort_execution": [] /* filesort_execution */ ,
+            "filesort_summary": {
+              "rows": 8,
+              "examined_rows": 8,
+              "number_of_tmp_files": 0,
+              "sort_buffer_size": 384,
+              "sort_mode": "<sort_key, rowid>"
+            } /* filesort_summary */
+          }
+        ] /* steps */
+      } /* join_execution */
+    }
+  ] /* steps */
+}
